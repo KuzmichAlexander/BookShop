@@ -1,0 +1,71 @@
+header {
+  width: 100%;
+  background-color: $main-green;
+  position: fixed;
+  z-index: 10;
+  opacity: .97;
+  //flex: 0 0 auto;
+
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .header-navigation {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.logo {
+  background-image: url("../../images/landing/book.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 35px;
+  width: 35px;
+  position: relative;
+  margin-right: 1rem;
+  margin-top: .4rem;
+}
+
+nav {
+  a {
+    @extend %nav-links;
+  }
+  a:hover {
+    @extend %nav-links-hover;
+  }
+
+}
+
+.user-actions {
+  a {
+    @extend %nav-links;
+  }
+  a:hover {
+    @extend %nav-links-hover;
+  }
+}
+
+%nav-links-hover {
+  color: $font-color-black;
+  background-color: $font-color-white;
+}
+
+%nav-links {
+  font-family: 'Raleway', sans-serif;
+  display: inline-block;
+  padding: 10px;
+  font-size: 20px;
+  color: $font-color-white;
+  text-align: center;
+  transition: $main-transition;
+
+  //:active {
+  //  color: $font-color-black;
+  //  background-color: $font-color-white;
+  //}
+}
