@@ -2,16 +2,28 @@ import {Link} from 'react-router-dom';
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {useState} from "react";
 import {UserShortInfo} from "../main/modals/UserShortInfo";
+import {AuthWindow} from "../main/modals/AuthWindow";
+import {useActions} from "../../hooks/useActions";
+import {userLoguot} from "../../redux/action-creators/userActionCreators/userAuthRegister";
 
 export const Nav: React.FC = () => {
     const userName = useTypeSelector(state => state.authUser.name);
     const [userShortInfo, setUserShortInfo] = useState<boolean>(false);
+    const [authWindow, setAuthWindow] = useState<boolean>(false);
+
+
+
+
 
     const showUserWindow = () => {
         setUserShortInfo(!userShortInfo);
-        console.log('show');
+        console.log('show user');
     }
 
+    const showAuthWindow = () => {
+        setAuthWindow(!authWindow);
+        console.log('show auth');
+    }
 
     return (
         <header >
@@ -24,11 +36,12 @@ export const Nav: React.FC = () => {
                 </nav>
                 {userName ?
                     <div className={'user-actions'}>
-                        <Link onClick={showUserWindow} to={'/auth'}>{userName}</Link>
-                        {userShortInfo ? <UserShortInfo /> : null}
+                        <a onClick={showUserWindow} >{userName}</a>
+                        {userShortInfo ? <UserShortInfo showWindow={showUserWindow} /> : null}
                     </div>
                     : <div className={'user-actions'}>
-                    <Link to={'/auth'}>Войти</Link>
+                    <a onClick={showAuthWindow} >Войти</a>
+                        {authWindow ? <AuthWindow showAuthWindow={showAuthWindow}  /> : null}
                     <Link to={'/registration'}>Зарегистрироваться</Link>
                 </div>}
 

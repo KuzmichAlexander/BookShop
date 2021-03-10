@@ -3,7 +3,8 @@ import {book, fetchBooksActions} from "../book/book";
 export enum userAuthActions {
     USER_AUTH = 'USER_AUTH',
     USER_AUTH_SUCCESS = 'USER_AUTH_SUCCESS',
-    USER_AUTH_ERROR = 'USER_AUTH_ERROR'
+    USER_AUTH_ERROR = 'USER_AUTH_ERROR',
+    USER_LOGOUT = 'USER_LOGOUT'
 };
 
 export interface userState {
@@ -22,12 +23,17 @@ export type fetchedUser = {
     token: string;
     surname: string;
     email: string;
+    ok: boolean;
 }
 
-export type userAuthAction = authUserAction | authUserSuccessAction | authUserErrorAction
+export type userAuthAction = authUserAction | authUserSuccessAction | authUserErrorAction | logoutUserAction
 
 interface authUserAction {
     type: userAuthActions.USER_AUTH;
+}
+
+interface logoutUserAction {
+    type: userAuthActions.USER_LOGOUT;
 }
 
 interface authUserSuccessAction {

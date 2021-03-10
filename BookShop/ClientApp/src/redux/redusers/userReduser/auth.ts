@@ -1,4 +1,4 @@
-import {userAuthActions, userState, userAuthAction} from "../../types/user/user";
+import {userAuthAction, userAuthActions, userState} from "../../types/user/user";
 
 const initialUserState: userState = {
     name: '',
@@ -13,11 +13,21 @@ const initialUserState: userState = {
 export const userAuthReduser = (state = initialUserState, action: userAuthAction): userState => {
     switch (action.type) {
         case userAuthActions.USER_AUTH:
-            return {loading: true, error: null, name: '', surname: '', email: '', login: '', token: '',};
+            return {loading: true, error: null, name: '', surname: '', email: '', login: '', token: ''};
         case userAuthActions.USER_AUTH_SUCCESS:
-            return {loading: false, error: null, login: action.payload.login, name: action.payload.name, token: action.payload.token, email: action.payload.email, surname: action.payload.surname}
+            return {
+                loading: false,
+                error: null,
+                login: action.payload.login,
+                name: action.payload.name,
+                token: action.payload.token,
+                email: action.payload.email,
+                surname: action.payload.surname
+            }
         case userAuthActions.USER_AUTH_ERROR:
             return {loading: false, error: action.payload, login: '', name: '', token: '', surname: '', email: ''}
+        case userAuthActions.USER_LOGOUT:
+            return {loading: false, error: null, name: '', surname: '', email: '', login: '', token: ''}
         default:
             return state;
     }

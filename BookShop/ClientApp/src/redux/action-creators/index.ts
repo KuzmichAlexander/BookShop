@@ -1,7 +1,9 @@
 import {fetchBooks} from "./books";
-import {userAuth} from "./userActionCreators/userAuthRegister";
+import {userAuth, userLoguot, tokenUserAuth} from "./userActionCreators/userAuthRegister";
 
 export default {
     fetchBooks,
-    userAuth
-}
+    userAuth,
+    userLoguot,
+    tokenUserAuth
+};

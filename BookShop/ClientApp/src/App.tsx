@@ -4,19 +4,21 @@ import {Nav} from "./components/header/Nav";
 import {Main} from "./components/main/Main";
 import {useActions} from "./hooks/useActions";
 import {Footer} from "./components/footer/Footer";
-import axios from "axios";
+import {token} from "./components/units/consts/consts";
 
 function App() {
     const state = useTypeSelector(state => state);
-    const { userAuth, fetchBooks } = useActions()
+    const { tokenUserAuth } = useActions();
     useEffect(() => {
-        //fetchBooks();
-        //userAuth();
-        const url: string = document.location.origin;
-        // @ts-ignore
-        const data = axios.post('https://localhost:44391/api/Auth', {login: 'kekw', id: 21, password: 'kekw'})
-        console.log(data)
+        if (localStorage.getItem(token)) {
+
+            // @ts-ignore
+            const accessToken: string = localStorage.getItem(token);
+            console.log(localStorage.getItem(token))
+            tokenUserAuth(accessToken)
+        }
     }, []);
+
 
     //console.log(state)
     return (
