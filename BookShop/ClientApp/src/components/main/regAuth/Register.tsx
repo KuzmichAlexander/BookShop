@@ -1,5 +1,7 @@
 import {ChangeEvent, useState} from "react";
 import {CustomLabel} from "../../units/CustomLabel";
+import {useDispatch, useSelector} from "react-redux";
+import {useActions} from "../../../hooks/useActions";
 
 
 
@@ -10,9 +12,11 @@ export const Register = () => {
     const [email, setEmail] = useState<string>('');
     const [surname, setSurname] = useState<string>('');
     const [accept, setAccept] = useState<boolean>(true);
+    const {userRegister} = useActions();
 
     const registrationUser = (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        userRegister({email, login, name, password, surname});
         // Сконектить с сервером!!!!!
     }
 

@@ -11,11 +11,9 @@ function App() {
     const { tokenUserAuth } = useActions();
     useEffect(() => {
         if (localStorage.getItem(token)) {
-
             // @ts-ignore
             const accessToken: string = localStorage.getItem(token);
-            console.log(localStorage.getItem(token))
-            tokenUserAuth(accessToken)
+            tokenUserAuth(accessToken);
         }
     }, []);
 

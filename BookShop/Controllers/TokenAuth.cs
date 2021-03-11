@@ -15,6 +15,7 @@ namespace BookShop.Controllers
         [HttpPost]
         public UserAuthData Post(UserAuthToken token)
         {
+            
             UserAuthData uad = new UserAuthData();
             if (token.Token == "sdfaTKTTJ54okOKT4wfefew24tr4wwffgRFGLGPrg34")
             {

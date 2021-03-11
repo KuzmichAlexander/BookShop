@@ -1,5 +1,7 @@
 ﻿using BookShop.Models;
+using BookShop.Models.DBContext;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BookShop.Controllers
 {
@@ -7,26 +9,64 @@ namespace BookShop.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-        // GET: AuthController
+        DBContext db = new DBContext();
+        [HttpGet]
+        public UserAuthData Get() // UserAuthData
+        {
+            string token = Request.Headers["Authorization"];
+            UserAuthData user = ParseToken(token);
+
+            user.Ok = true;
+            return user;
+        }
+
+
         [HttpPost]
         public UserAuthData Post(UserAuth ua)
         {
-            UserAuthData uad = new UserAuthData();
-            if (ua.Login == "kekw" && ua.Password == "1") {              
-                uad.Email = "Kozyavkov2332@mail.ru";
-                uad.Login = "Kozyavkov23";
-                uad.Name = "Константин";
-                uad.Surname = "Гибон";
-                uad.Token = "sdfaTKTTJ54okOKT4wfefew24tr4wwffgRFGLGPrg34";
-                uad.Ok = true;
-                return uad;
+            UserAuthData user = new UserAuthData();
+
+            var trueUser = db.Users.First(user => user.Login == ua.Login && user.Password == SecurityMethods.GetSHA1Hash(ua.Password));
+
+            if (trueUser == null)
+            {
+                user.Ok = false;
+                return user;
             }
 
-            uad.Ok = false;
-            return uad;
+            user.Login = trueUser.Login;
+            user.Name = trueUser.Name;
+            user.Surname = trueUser.Surname;
+            user.Email = trueUser.Email;
+            user.Token = trueUser.Token;
+
+
+            user.Ok = true;
+
+            return user;
         }
 
-        
+
+
+        public UserAuthData ParseToken(string token)
+        {
+            var user = new UserAuthData();
+            var trueUser = db.Users.First(user => user.Token == token);
+
+            if (trueUser == null)
+            {
+                user.Ok = false;
+                return user;
+            }
+
+            user.Login = trueUser.Login;
+            user.Name = trueUser.Name;
+            user.Surname = trueUser.Surname;
+            user.Email = trueUser.Email;
+
+            return user;
+
+        }
     }
     
 
