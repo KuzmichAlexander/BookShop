@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using BookShop.Models;
 using System.Linq;
 using BookShop.Models.DBContext;
+using System.Threading;
 
 namespace BookShop.Controllers
 {
@@ -17,32 +18,29 @@ namespace BookShop.Controllers
     [ApiController]
     public class RegistrationController : Controller
     {
-      
         DBContext db = new DBContext();
-        
-        [HttpGet]
-        
 
         [HttpPost]
         public string Post(RegistrationInput ri)
         {
-            RegistrationData rd = SecurityMethods.DBWrapper(ri);
+            //Если такой логин уже зареган
+            if (db.Users.FirstOrDefault(user => user.Login == ri.Login) != null)
+            {
+                return ServerResponses.LoginWasExisted;
+            }
 
-            //----- Тут будет Создание токена
+            RegistrationData rd = SecurityMethods.DBWrapper(ri);
+            //----- Тут будет создание токена
             rd.Token = SecurityMethods.CreateToken(rd);
             //-----
 
             //----- Тут будет занесение данных в бд
-            //
-
             db.Users.Add(rd);
             db.SaveChanges();
             SecurityMethods.LogRegister(rd);
-            //
-            //var a = _db.Users.First(a => a.Id == 0);
-            var a = "321";
-            return a;
-           // return JsonSerializer.Serialize<RegistrationData>(a);
+            //-----
+
+            return ServerResponses.UserWasCreated;
         }
 
 
@@ -58,13 +56,14 @@ namespace BookShop.Controllers
             return number;
         }
 
-        static void SendEmail()
+        static void SendEmail(string Email)
         {
             MailAddress from = new MailAddress("bookstore@internet.ru", "Магазин WILDBOOKI");
-            MailAddress to = new MailAddress("kuajtaa@mail.ru"); //
+            MailAddress to = new MailAddress(Email); //
             MailMessage m = new MailMessage(from, to);
             m.Subject = "Проверочный код";
-            m.Body = @$"<h2>Проверочный код {GetRandomNumber()} (Рыглан когда в хс регать будем я не шучу)</h2>";
+            m.Body = @$"<h2>Проверочный код {GetRandomNumber()}</h2>
+            <p>Сообщение создано автоматичеки нашим ботом, не нужно на него отвечать</p>";
             m.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient("smtp.mail.ru", 465);
             smtp.EnableSsl = true;

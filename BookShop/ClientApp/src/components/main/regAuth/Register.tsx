@@ -1,7 +1,10 @@
-import {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {CustomLabel} from "../../units/CustomLabel";
 import {useDispatch, useSelector} from "react-redux";
 import {useActions} from "../../../hooks/useActions";
+import {userRegister} from "../../../redux/action-creators/userActionCreators/userAuthRegister";
+import {Loader} from "../../units/Loader";
+import greenLoader from "../../../images/loader/Spinner-green.svg";
 
 
 
@@ -12,12 +15,17 @@ export const Register = () => {
     const [email, setEmail] = useState<string>('');
     const [surname, setSurname] = useState<string>('');
     const [accept, setAccept] = useState<boolean>(true);
-    const {userRegister} = useActions();
+    const [serverAnswer, setServerAnswer] = useState<string>('');
+    const [serverLoading, setServerLoading] = useState<boolean>(false);
 
-    const registrationUser = (e : React.FormEvent<HTMLFormElement>) => {
+    const registrationUser = async (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        userRegister({email, login, name, password, surname});
-        // Сконектить с сервером!!!!!
+        setServerLoading(true);
+        setAccept(true);
+        const answer = await userRegister({email, login, name, password, surname});
+        setAccept(false);
+        setServerAnswer(answer);
+        setServerLoading(false);
     }
 
     const nameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +67,10 @@ export const Register = () => {
                     <input type="checkbox" className="custom-checkbox" id="happy" name="happy" value="yes" />
                     <label onClick={acceptChange} className={'custom-checkbox-label'} htmlFor="happy">Обязуюсь подарить автору печеньки</label>
                 </label>
+                {serverLoading ? <Loader width={100} color={"green"} /> : <Loader width={0} color={"green"} />}
+                {serverAnswer ? <p className={serverAnswer.includes('уже') ? "message-warning" : "message-success"}>{serverAnswer}</p> : null}
                 <button disabled={accept} className={'submit-button'} type={"submit"}>Зарегистрироваться</button>
+
             </form>
         </div>
     );

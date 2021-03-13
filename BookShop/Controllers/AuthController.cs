@@ -2,6 +2,7 @@
 using BookShop.Models.DBContext;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading;
 
 namespace BookShop.Controllers
 {
@@ -11,10 +12,12 @@ namespace BookShop.Controllers
     {
         DBContext db = new DBContext();
         [HttpGet]
-        public UserAuthData Get() // UserAuthData
+        public UserAuthData Get() // Авторизация по токену
         {
             string token = Request.Headers["Authorization"];
             UserAuthData user = ParseToken(token);
+
+            Thread.Sleep(10000);
 
             user.Ok = true;
             return user;
@@ -22,11 +25,12 @@ namespace BookShop.Controllers
 
 
         [HttpPost]
-        public UserAuthData Post(UserAuth ua)
+        public UserAuthData Post(UserAuth ua) // Авторизация по логину и паролю
         {
             UserAuthData user = new UserAuthData();
+            Thread.Sleep(10000);
 
-            var trueUser = db.Users.First(user => user.Login == ua.Login && user.Password == SecurityMethods.GetSHA1Hash(ua.Password));
+            var trueUser = db.Users.FirstOrDefault(user => user.Login == ua.Login && user.Password == SecurityMethods.GetSHA1Hash(ua.Password));
 
             if (trueUser == null)
             {
@@ -39,6 +43,7 @@ namespace BookShop.Controllers
             user.Surname = trueUser.Surname;
             user.Email = trueUser.Email;
             user.Token = trueUser.Token;
+            user.IsAdmin = trueUser.IsAdmin;
 
 
             user.Ok = true;
@@ -63,12 +68,9 @@ namespace BookShop.Controllers
             user.Name = trueUser.Name;
             user.Surname = trueUser.Surname;
             user.Email = trueUser.Email;
+            user.IsAdmin = trueUser.IsAdmin;
 
             return user;
-
         }
     }
-    
-
-    
 }

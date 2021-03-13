@@ -15,6 +15,7 @@ export interface userState {
     token: null | string;
     error: null | string;
     loading: boolean;
+    isAdmin: boolean;
 };
 
 export type fetchedUser = {
@@ -23,6 +24,7 @@ export type fetchedUser = {
     token: string;
     surname: string;
     email: string;
+    isAdmin: boolean;
     ok: boolean;
 }
 

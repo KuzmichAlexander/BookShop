@@ -3,26 +3,22 @@ import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {useState} from "react";
 import {UserShortInfo} from "../main/modals/UserShortInfo";
 import {AuthWindow} from "../main/modals/AuthWindow";
-import {useActions} from "../../hooks/useActions";
-import {userLoguot} from "../../redux/action-creators/userActionCreators/userAuthRegister";
+import {Loader} from "../units/Loader";
 
 export const Nav: React.FC = () => {
     const userName = useTypeSelector(state => state.authUser.name);
+    const isAdmin = useTypeSelector(state => state.authUser.isAdmin);
+
+    const loading = useTypeSelector(state => state.authUser.loading);
     const [userShortInfo, setUserShortInfo] = useState<boolean>(false);
     const [authWindow, setAuthWindow] = useState<boolean>(false);
 
-
-
-
-
     const showUserWindow = () => {
         setUserShortInfo(!userShortInfo);
-        console.log('show user');
     }
 
     const showAuthWindow = () => {
         setAuthWindow(!authWindow);
-        console.log('show auth');
     }
 
     return (
@@ -36,15 +32,19 @@ export const Nav: React.FC = () => {
                 </nav>
                 {userName ?
                     <div className={'user-actions'}>
+                        {isAdmin ? <>
+                            <Link to={'editbooks'}>Настройки</Link>
+                            <Link to={'metrics'}>Статистика</Link>
+                        </> : null}
                         <a onClick={showUserWindow} >{userName}</a>
                         {userShortInfo ? <UserShortInfo showWindow={showUserWindow} /> : null}
                     </div>
                     : <div className={'user-actions'}>
-                    <a onClick={showAuthWindow} >Войти</a>
+                        {loading ? <Loader scale={1.8} marginTop={9} width={30} color={"white"}/>
+                        : <a onClick={showAuthWindow} >Войти</a>}
                         {authWindow ? <AuthWindow showAuthWindow={showAuthWindow}  /> : null}
                     <Link to={'/registration'}>Зарегистрироваться</Link>
                 </div>}
-
             </div>
         </header>
     );

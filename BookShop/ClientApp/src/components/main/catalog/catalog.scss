@@ -1,0 +1,51 @@
+.books {
+  display: grid;
+  grid-column-gap: 30px;
+  grid-template-columns: 250px 1fr;
+  grid-template-areas: "filter books";
+
+  .filter-container {
+    grid-area: filter;
+    padding: 15px;
+   // border: 2px solid #b1aea8;
+
+    h2 {
+      font-size: 22px;
+      font-weight: 400;
+      padding: 25px 0 10px 0;
+
+      &:nth-child(1) {
+        padding: 3px 0;
+        font-size: 24px;
+        border-bottom: 2px solid $main-green;
+      }
+    }
+
+    select {
+      padding: 5px;
+      font-size: 18px;
+      width: 100%;
+    }
+
+  }
+
+  .books-container {
+    grid-area: books;
+    border: 5px solid red;
+
+
+  }
+}
+
+.price-container {
+  display: flex;
+  width: 100%;
+
+  .price-filter {
+    flex: 1;
+    width: 30%;
+    padding: 5px;
+    font-size: 18px;
+
+  }
+}

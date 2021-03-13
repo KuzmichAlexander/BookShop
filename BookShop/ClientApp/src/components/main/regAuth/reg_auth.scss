@@ -111,3 +111,13 @@ $box-shadow-color: rgba(33, 33, 33, 0.3);
 .submit-button:hover {
   background-color: #23ab38;
 }
+
+.message-warning {
+  color: $main-red;
+  font-size: 18px;
+}
+
+.message-success {
+  color: $main-green;
+  font-size: 18px;
+}

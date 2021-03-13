@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {useActions} from "../../../hooks/useActions";
 import {CustomLabel} from "../../units/CustomLabel";
+import {Loader} from "../../units/Loader";
 
 type AuthWindowType = {
     showAuthWindow: () => void;
@@ -10,6 +11,9 @@ type AuthWindowType = {
 export const AuthWindow: React.FC<AuthWindowType> = ({showAuthWindow}) => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+
+    const error = useTypeSelector(state => state.authUser.error);
+
     const {userAuth} = useActions();
 
 
@@ -32,6 +36,7 @@ export const AuthWindow: React.FC<AuthWindowType> = ({showAuthWindow}) => {
                 <br/>
                 <CustomLabel onChange={changeLogin} value={login} type={'text'} name={'Login'}/>
                 <CustomLabel onChange={changePassword} value={password} type={'password'} name={'Password'}/>
+                {error ? <p className={'message-warning'} style={{fontSize: 18}}>{error} <br/><br/></p> : null}
                 <button className={"submit-button auth-button"} onClick={auth}>Войти</button>
             </div>
         </div>

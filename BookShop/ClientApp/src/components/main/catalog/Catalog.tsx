@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Filter} from "./Filter";
+import {BooksContainer} from "./BooksContainer";
 
 
 export const Catalog: React.FC = () => {
@@ -8,12 +9,9 @@ export const Catalog: React.FC = () => {
 
     return (
         <div className={'container'}>
-            <div className={'books-container'}>
-                <div className={'filter'}>
-                    <Filter name={name} setName={setName}/>
-                </div>
-
-                <div className={'books'}></div>
+            <div className={'books'}>
+                <Filter />
+                <BooksContainer />
             </div>
 
         </div>

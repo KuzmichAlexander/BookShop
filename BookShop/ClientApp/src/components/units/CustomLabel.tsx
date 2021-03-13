@@ -5,13 +5,14 @@ type customLabelType = {
     value: string;
     type: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string
 }
 
-export const CustomLabel: React.FC<customLabelType> = ({name, onChange, type, value}) => {
+export const CustomLabel: React.FC<customLabelType> = ({name,placeholder, onChange, type, value}) => {
     return (
         <label className={'input__container'}>
             <h3>{name}</h3>
-            <input type={type} value={value} onChange={onChange}/>
+            <input placeholder={placeholder} type={type} value={value} onChange={onChange}/>
         </label>
     )
 }
