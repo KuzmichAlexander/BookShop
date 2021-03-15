@@ -1,10 +1,15 @@
-import {useState} from "react";
+import {useEffect} from "react";
 import {Filter} from "./Filter";
 import {BooksContainer} from "./BooksContainer";
+import {useActions} from "../../../hooks/useActions";
 
 
 export const Catalog: React.FC = () => {
-    const [name, setName] = useState<string>('');
+    const {fetchBooks} = useActions();
+
+    useEffect(() => {
+        fetchBooks({default: true});
+    }, []);
 
 
     return (

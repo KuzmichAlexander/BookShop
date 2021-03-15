@@ -17,8 +17,6 @@ namespace BookShop.Controllers
             string token = Request.Headers["Authorization"];
             UserAuthData user = ParseToken(token);
 
-            Thread.Sleep(10000);
-
             user.Ok = true;
             return user;
         }
@@ -28,7 +26,6 @@ namespace BookShop.Controllers
         public UserAuthData Post(UserAuth ua) // Авторизация по логину и паролю
         {
             UserAuthData user = new UserAuthData();
-            Thread.Sleep(10000);
 
             var trueUser = db.Users.FirstOrDefault(user => user.Login == ua.Login && user.Password == SecurityMethods.GetSHA1Hash(ua.Password));
 

@@ -44,6 +44,33 @@ body {
   margin: 0 auto;
 }
 
+.submit-button {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  margin-top: 30px;
+  font-family: 'Roboto', sans-serif;
+  color: $font-color-white;
+  background-color: $main-green;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color .15s linear;
+
+  &:disabled {
+    background-color: #438552;
+  }
+
+  &:disabled:hover {
+    cursor: default;
+    background-color: #438552;
+  }
+
+  &:hover {
+    background-color: #23ab38;
+  }
+}
+
 
 
 @media (max-width: 1280px) {

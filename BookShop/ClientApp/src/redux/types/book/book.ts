@@ -7,9 +7,11 @@ export enum fetchBooksActions {
 export type book = {
     name: string;
     author: string;
-    discription: string;
-    subjectOpinion: string;
-    rating: number;
+    description: string;
+    category: string;
+    price: number;
+    photoUrl: string;
+    edition: number;
 }
 
 export interface booksState {
@@ -32,4 +34,13 @@ interface bookFetchSuccessAction {
 interface bookFetchErrorAction {
     type: fetchBooksActions.FETCH_BOOKS_ERROR;
     payload: string
+}
+
+
+export type fetchBooksOptions = {
+    default: boolean;
+    name?: string;
+    priceAbove?: number;
+    priceBelow?: number;
+    genre?: string;
 }
