@@ -10,15 +10,17 @@ export type book = {
     description: string;
     category: string;
     price: number;
-    photoUrl: string;
-    edition: number;
+    imageURL: string;
+    genre: string
+    edition: string;
+    id: number;
 }
 
 export interface booksState {
     books: book[];
     loading: boolean;
     error: null | string;
-};
+}
 
 export type fetchBookAction = bookFetchAction | bookFetchSuccessAction | bookFetchErrorAction
 
@@ -35,7 +37,6 @@ interface bookFetchErrorAction {
     type: fetchBooksActions.FETCH_BOOKS_ERROR;
     payload: string
 }
-
 
 export type fetchBooksOptions = {
     default: boolean;

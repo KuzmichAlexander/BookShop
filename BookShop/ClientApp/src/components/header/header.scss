@@ -31,10 +31,26 @@ header {
   margin-top: .4rem;
 }
 
+.basket {
+  background-image: url("../../images/shopping-basket.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  padding: 0 14px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 nav {
   a {
     @extend %nav-links;
   }
+
   a:hover {
     @extend %nav-links-hover;
   }
@@ -42,9 +58,14 @@ nav {
 }
 
 .user-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   a {
     @extend %nav-links;
   }
+
   a:hover {
     @extend %nav-links-hover;
   }

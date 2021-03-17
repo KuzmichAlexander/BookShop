@@ -1,17 +1,7 @@
 import {Dispatch} from "redux";
-import {fetchedUser, userAuthAction, userAuthActions} from "../../types/user/user";
+import {userAuthAction, userAuthActions} from "../../types/user/user";
 import {baseUrl, token} from "../../../components/units/consts/consts";
 import axios from "axios";
-
-
-//const oneuser: fetchedUser = {
-//ok: true
-//name: 'Аркадий',
-// surname: 'Валерьянков',
-//  email: 'arckashka777@mail.ru',
-//  login: 'arckashka777',
-//  token: '$UrgJOstydtgFJKFHEEseghtgIOR@)#FERSFE54t4e5atsfwtf5gse'
-//};
 
 export const userAuth = (login: string, password: string) => {
     return async function (dispatch: Dispatch<userAuthAction>) {

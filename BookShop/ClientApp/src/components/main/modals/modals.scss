@@ -2,7 +2,6 @@
   position: fixed;
   padding: 20px;
   width: 250px;
-  //transform: translateX(-50%);
   top: 50px;
   right: calc(20% - 150px);
   margin-top: 10px;
@@ -74,4 +73,108 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.basketWindow {
+  box-sizing: border-box;
+  width: 40vw;
+  position: absolute;
+  padding: 20px;
+  //transform: translateX(-50%);
+  top: 50px;
+  right: 3%;
+  min-height: 100px;
+  background-color: $font-color-white;
+
+  h2 {
+    border-bottom: 2px solid $main-green;
+    font-weight: 400;
+  }
+
+  .order-container {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+
+    .order-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+
+      .order-switcher {
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        p {
+          margin: 0 15px;
+        }
+
+        .remove-book {
+          background-color: $main-red;
+          @extend %basket-actions;
+
+          &:hover {
+            opacity: .9;
+            cursor: pointer;
+          }
+        }
+
+        .add-book {
+          background-color: $main-green;
+          @extend %basket-actions;
+
+          &:hover {
+            opacity: 1;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .order-title {
+        display: flex;
+        align-items: center;
+
+        .order-image {
+          border-radius: 5px;
+          overflow: hidden;
+          width: 50px;
+          height: 60px;
+          margin-right: 15px;
+
+          img {
+            width: 100%;
+
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.price-description {
+  opacity: .7;
+
+  &:after {
+    content: ' ₽';
+  }
+}
+
+.basket-focus {
+  background-color: rgba(0, 0, 0, .3);
+}
+
+%basket-actions {
+  background-size: contain;
+  background-position: center;
+  opacity: 0.88;
+  width: 40px;
+  height: 30px;
+  padding-bottom: 7px;
+  border-radius: 20%;
+  color: $font-color-white;
+  font-size: 30px;
+  transition: $main-transition;
 }

@@ -18,7 +18,6 @@ export const Catalog: React.FC = () => {
                 <Filter />
                 <BooksContainer />
             </div>
-
         </div>
     );
 };

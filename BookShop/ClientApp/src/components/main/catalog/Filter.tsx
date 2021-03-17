@@ -1,4 +1,4 @@
-import {ChangeEvent, Dispatch, SetStateAction, useState} from "react";
+import React, {ChangeEvent, Dispatch, SetStateAction, useState} from "react";
 import {CustomLabel} from "../../units/CustomLabel";
 import {createSelect} from "../../units/consts/consts";
 import {useActions} from "../../../hooks/useActions";
@@ -16,7 +16,8 @@ export const Filter: React.FC = () => {
     }
 
 
-    const filterChange = () => {
+    const filterChange = (e : React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         fetchBooks({
             default: false,
             name,
