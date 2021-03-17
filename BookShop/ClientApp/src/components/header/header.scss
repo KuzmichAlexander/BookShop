@@ -40,6 +40,19 @@ header {
   width: 30px;
   position: relative;
   padding: 0 14px;
+  position: relative;
+
+  span {
+    background-color: $main-red;
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    color: $font-color-white;
+    display: block;
+    padding: 2px 5px;
+    border-radius: 10px;
+    text-align: center;
+  }
 
   &:hover {
     cursor: pointer;

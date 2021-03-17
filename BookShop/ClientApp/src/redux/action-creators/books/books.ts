@@ -32,3 +32,10 @@ export const removeBookFromBasket = (id: number) => {
         payload: id
     };
 };
+
+export const getsBookFromBasket = () => {
+    return {
+        type: orderBooksActions.GET_BOOKS_FROM_LOCALSTORAGE
+    };
+};
+

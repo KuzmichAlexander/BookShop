@@ -11,6 +11,7 @@ type AuthWindowType = {
 export const AuthWindow: React.FC<AuthWindowType> = ({showAuthWindow}) => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [saveMe, setSaveMe] = useState<boolean>(false);
 
     const error = useTypeSelector(state => state.authUser.error);
 
@@ -26,7 +27,11 @@ export const AuthWindow: React.FC<AuthWindowType> = ({showAuthWindow}) => {
     }
 
     const auth = () => {
-        userAuth(login, password);
+        userAuth(login, password, saveMe);
+    }
+
+    const acceptChange = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
+        setSaveMe(!saveMe);
     }
 
     return (
@@ -36,6 +41,10 @@ export const AuthWindow: React.FC<AuthWindowType> = ({showAuthWindow}) => {
                 <br/>
                 <CustomLabel onChange={changeLogin} value={login} type={'text'} name={'Login'}/>
                 <CustomLabel onChange={changePassword} value={password} type={'password'} name={'Password'}/>
+                <label className={'input__container'}>
+                    <input type="checkbox" className="custom-checkbox" id="happy" name="happy" value="yes" />
+                    <label onClick={acceptChange} className={'custom-checkbox-label'} htmlFor="happy">Запомнить меня</label>
+                </label>
                 {error ? <p className={'message-warning'} style={{fontSize: 18}}>{error} <br/><br/></p> : null}
                 <button className={"submit-button auth-button"} onClick={auth}>Войти</button>
             </div>

@@ -3,7 +3,7 @@ import {userAuthAction, userAuthActions} from "../../types/user/user";
 import {baseUrl, token} from "../../../components/units/consts/consts";
 import axios from "axios";
 
-export const userAuth = (login: string, password: string) => {
+export const userAuth = (login: string, password: string, save: boolean = true) => {
     return async function (dispatch: Dispatch<userAuthAction>) {
         try {
             dispatch({type: userAuthActions.USER_AUTH});
@@ -11,7 +11,9 @@ export const userAuth = (login: string, password: string) => {
             const {data} = await axios.post(`${baseUrl}/api/Auth`, {login, password});
 
             if (data.ok) {
-                localStorage.setItem(token, data.token);
+                if (save) {
+                    localStorage.setItem(token, data.token);
+                }
                 dispatch({type: userAuthActions.USER_AUTH_SUCCESS, payload: data});
             } else {
                 dispatch({type: userAuthActions.USER_AUTH_ERROR, payload: "Неверный логин или пароль"});
@@ -43,6 +45,7 @@ export const tokenUserAuth = (token: string) => {
 export const userLoguot = () => {
     return function (dispatch: Dispatch<userAuthAction>) {
         localStorage.removeItem(token);
+        localStorage.removeItem('booksInBasket');
         dispatch({type: userAuthActions.USER_LOGOUT});
     }
 }

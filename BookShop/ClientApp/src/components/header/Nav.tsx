@@ -12,6 +12,7 @@ export const Nav: React.FC = () => {
     const isAdmin = useTypeSelector(state => state.authUser.isAdmin);
 
     const loading = useTypeSelector(state => state.authUser.loading);
+    const basketCount = useTypeSelector(state => state.booksBasket.orderList);
     const [userShortInfo, setUserShortInfo] = useState<boolean>(false);
     const [authWindow, setAuthWindow] = useState<boolean>(false);
     const [basket, setBasketWindow] = useState<boolean>(false);
@@ -25,8 +26,15 @@ export const Nav: React.FC = () => {
     }
 
     const showBasketWindow = () => {
-        console.log('открыл')
         setBasketWindow(!basket);
+    }
+
+    const BooksInStorage = (): number => {
+        let count = 0;
+        basketCount.forEach(order => {
+            count += order.count;
+        })
+        return count;
     }
 
     return (
@@ -45,7 +53,9 @@ export const Nav: React.FC = () => {
                             <Link to={'metrics'}>Статистика</Link>
                         </> : null}
                         <a onClick={showUserWindow}>{userName}</a>
-                        <div onClick={showBasketWindow} className={'basket'}></div>
+                        <div onClick={showBasketWindow} className={'basket'}>
+                            {BooksInStorage() ? <span>{BooksInStorage()}</span> : null}
+                        </div>
                         {basket ? <Basket showWindow={showBasketWindow}  /> : null}
                         {userShortInfo ? <UserShortInfo showWindow={showUserWindow}/> : null}
                     </div>
@@ -58,4 +68,4 @@ export const Nav: React.FC = () => {
             </div>
         </header>
     );
-};
+}

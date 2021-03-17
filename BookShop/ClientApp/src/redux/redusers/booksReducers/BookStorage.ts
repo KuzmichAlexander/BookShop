@@ -21,8 +21,10 @@ export const BookStorageReduсer = (state = initialState, action: orderBookActio
                         return oneOrder;
                     }
                 })
+                localStorage.setItem('booksInBasket', JSON.stringify(newOrderList))
                 return {orderList: [...newOrderList]};
             } else {
+                localStorage.setItem('booksInBasket', JSON.stringify([...state.orderList, action.payload]))
                 return {orderList: [...state.orderList, action.payload]};
             }
 
@@ -35,11 +37,17 @@ export const BookStorageReduсer = (state = initialState, action: orderBookActio
                 }
                 return order;
             });
-            return {orderList: [...newOrderList.filter(order => order.count !== 0)]}
+            const sortList = newOrderList.filter(order => order.count !== 0);
+            localStorage.setItem('booksInBasket', JSON.stringify(sortList));
+            return {orderList: [...sortList]}
         case orderBooksActions.ORDER_BOOK:
             return {orderList: [...state.orderList]};
         case orderBooksActions.GET_BOOKS_FROM_LOCALSTORAGE:
-            return {orderList: [...state.orderList]};
+            const books = localStorage.getItem('booksInBasket');
+            if (books) {
+                return {orderList: JSON.parse(books)};
+            }
+            return {...state};
         default:
             return state;
     }
