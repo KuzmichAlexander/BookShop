@@ -14,7 +14,7 @@ export const Home: React.FC = () => {
                     <div className={'landing-center'}>
                         <h1>Познай всю силу книг</h1>
                         <br/>
-                        <h2>Прямо сейчас</h2>
+                        <h1>Прямо сейчас</h1>
                     </div>
                     <div className={'landing-bottom'}>
                         <span className={'bite-to-buy'}>выбери книгу на свой вкус и цвет на WILDBOOKI</span>

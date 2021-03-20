@@ -53,17 +53,23 @@ export const Nav: React.FC = () => {
                             <Link to={'metrics'}>Статистика</Link>
                         </> : null}
                         <a onClick={showUserWindow}>{userName}</a>
+                        {basket ? <Basket showWindow={showBasketWindow}  /> : null}
                         <div onClick={showBasketWindow} className={'basket'}>
                             {BooksInStorage() ? <span>{BooksInStorage()}</span> : null}
                         </div>
-                        {basket ? <Basket showWindow={showBasketWindow}  /> : null}
                         {userShortInfo ? <UserShortInfo showWindow={showUserWindow}/> : null}
                     </div>
                     : <div className={'user-actions'}>
                         {loading ? <Loader scale={1.8} marginTop={9} width={30} color={"white"}/>
-                            : <a onClick={showAuthWindow}>Войти</a>}
+                            : <>
+                                <a onClick={showAuthWindow}>Войти</a>
+                                <Link to={'/registration'}>Зарегистрироваться</Link>
+                            </>}
+                        {basket ? <Basket showWindow={showBasketWindow}  /> : null}
+                        <div onClick={showBasketWindow} className={'basket'}>
+                            {BooksInStorage() ? <span>{BooksInStorage()}</span> : null}
+                        </div>
                         {authWindow ? <AuthWindow showAuthWindow={showAuthWindow}/> : null}
-                        <Link to={'/registration'}>Зарегистрироваться</Link>
                     </div>}
             </div>
         </header>

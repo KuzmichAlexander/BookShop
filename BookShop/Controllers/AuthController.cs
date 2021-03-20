@@ -16,7 +16,6 @@ namespace BookShop.Controllers
         {
             string token = Request.Headers["Authorization"];
             UserAuthData user = ParseToken(token);
-
             user.Ok = true;
             return user;
         }

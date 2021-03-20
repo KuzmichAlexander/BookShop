@@ -35,7 +35,7 @@ export const Filter: React.FC = () => {
                 <br/>
                 <CustomLabel placeholder={'Я ищу...'} name={''} value={name} type={'text'} onChange={nameChange}/>
 
-                <h2>Цена</h2>
+                <h2 style={{border: 'none'}}>Цена</h2>
                 <div className={'price-container'}>
                     <input className={'price-filter'} placeholder={'От'} value={priceAbove}
                            onChange={(e) => setPriceAbove(e.target.value)} type="text"/>
@@ -43,7 +43,7 @@ export const Filter: React.FC = () => {
                            onChange={(e) => setPriceBelow(e.target.value)} type="text"/>
                 </div>
 
-                <h2>Категория</h2>
+                <h2 style={{border: 'none'}}>Категория</h2>
                 <select value={genre} onChange={(e) => setGenre(e.target.value)}>
                     {createSelect()}
                 </select>

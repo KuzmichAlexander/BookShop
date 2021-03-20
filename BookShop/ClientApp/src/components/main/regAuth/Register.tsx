@@ -61,7 +61,7 @@ export const Register = () => {
                 <CustomLabel name={'Фамилия'} type={'text'} value={surname} onChange={surnameChange} />
                 <CustomLabel name={'Email'} type={'text'} value={email} onChange={emailChange} />
                 <CustomLabel name={'Логин'} type={'text'} value={login} onChange={loginChange} />
-                <CustomLabel name={'Пароль'} type={'text'} value={password} onChange={passwordChange} />
+                <CustomLabel name={'Пароль'} type={'password'} value={password} onChange={passwordChange} />
 
                 <label className={'input__container'}>
                     <input type="checkbox" className="custom-checkbox" id="happy" name="happy" value="yes" />

@@ -85,73 +85,6 @@
   right: 3%;
   min-height: 100px;
   background-color: $font-color-white;
-
-  h2 {
-    border-bottom: 2px solid $main-green;
-    font-weight: 400;
-  }
-
-  .order-container {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-
-    .order-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-
-      .order-switcher {
-        display: flex;
-        align-items: center;
-        text-align: center;
-
-        p {
-          margin: 0 15px;
-        }
-
-        .remove-book {
-          background-color: $main-red;
-          @extend %basket-actions;
-
-          &:hover {
-            opacity: .9;
-            cursor: pointer;
-          }
-        }
-
-        .add-book {
-          background-color: $main-green;
-          @extend %basket-actions;
-
-          &:hover {
-            opacity: 1;
-            cursor: pointer;
-          }
-        }
-      }
-
-      .order-title {
-        display: flex;
-        align-items: center;
-
-        .order-image {
-          border-radius: 5px;
-          overflow: hidden;
-          width: 50px;
-          height: 60px;
-          margin-right: 15px;
-
-          img {
-            width: 100%;
-
-          }
-        }
-      }
-    }
-
-  }
 }
 
 .price-description {
@@ -177,4 +110,65 @@
   color: $font-color-white;
   font-size: 30px;
   transition: $main-transition;
+}
+
+.order-container {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+
+  .order-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    .order-switcher {
+      display: flex;
+      align-items: center;
+      text-align: center;
+
+      p {
+        margin: 0 15px;
+      }
+
+      .remove-book {
+        background-color: $main-red;
+        @extend %basket-actions;
+
+        &:hover {
+          opacity: .9;
+          cursor: pointer;
+        }
+      }
+
+      .add-book {
+        background-color: $main-green;
+        @extend %basket-actions;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .order-title {
+      display: flex;
+      align-items: center;
+
+      .order-image {
+        border-radius: 5px;
+        overflow: hidden;
+        width: 50px;
+        height: 60px;
+        margin-right: 15px;
+
+        img {
+          width: 100%;
+
+        }
+      }
+    }
+  }
 }

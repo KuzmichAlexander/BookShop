@@ -44,7 +44,7 @@ namespace BookShop.Controllers
             }
 
             //var list = db.Books.Where(_ => true);
-            var list = books.Where(b => true);
+            var list = books.Select(b => b);
 
 
             if (ro.Name != "")

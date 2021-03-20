@@ -7,6 +7,12 @@ import {order, orderBooksActions} from "../../types/book/Basket";
 export const fetchBooks = (options: fetchBooksOptions) => {
     return async function (dispatch: Dispatch<fetchBookAction>) {
         try {
+            if (!options.priceAbove) {
+                options.priceAbove = 0;
+            }
+            if (!options.priceBelow) {
+                options.priceBelow = 0;
+            }
             dispatch({type: fetchBooksActions.FETCH_BOOKS});
 
             const {data} = await axios.post(`${baseUrl}/api/Books`, options);

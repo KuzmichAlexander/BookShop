@@ -5,6 +5,7 @@ import {Catalog} from "./catalog/Catalog";
 import {Register} from "./regAuth/Register";
 import {EditBooks} from "./adminPages/EditBooks";
 import {Metrics} from "./adminPages/Metrics";
+import {OrderPage} from "./OrderPage";
 
 export const Main: React.FC = () => {
     document.title = 'Главная';
@@ -14,6 +15,7 @@ export const Main: React.FC = () => {
             <div style={{marginTop: '80px'}} className={'container'}>
                 <Route exact path='/calc' component={Calc}/>
                 <Route exact path='/catalog' component={Catalog}/>
+                <Route exact path='/order' component={OrderPage}/>
 
                 {/*----закрытые для обычных ребят компоненты----*/}
                 <Route exact path='/editbooks' component={EditBooks}/>

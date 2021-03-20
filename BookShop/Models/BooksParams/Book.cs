@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookShop.Models.BooksParams;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,9 @@ namespace BookShop.Models
         public string Description { get; set; }
         public string ImageURL { get; set; }
         public string Edition { get; set; }
+        public string Pages { get; set; }
         public float Price { get; set; }
-        public string Genre { get; set; } //--- жанр
+        public string Genre { get; set; }
+        public bool HasInStorage { get; set; }
     }
 }

@@ -13,6 +13,7 @@ $main-transition: all .3s ease;
 @import 'components/main/catalog/catalog';
 @import 'components/main/regAuth/reg_auth';
 @import 'components/main/modals/modals';
+@import 'components/main/adminPages/EditBooksPages';
 
 
 * {
@@ -43,6 +44,11 @@ body {
 .container {
   width: 1280px;
   margin: 0 auto;
+}
+
+h2 {
+  border-bottom: 2px solid $main-green;
+  font-weight: 400;
 }
 
 .submit-button {
