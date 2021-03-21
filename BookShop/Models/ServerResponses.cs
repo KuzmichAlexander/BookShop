@@ -12,5 +12,6 @@ namespace BookShop.Models
         public static string LogInDataError = "Неверный логин или пароль";
         public static string ElementWasAdded = "Параметр добавлен в систему";
         public static string ElementWasExisted = "Такой параметр уже существует";
+        public static string BadRequest = "Сервер не умеет обрабатывать такие запросы";
     }
 }

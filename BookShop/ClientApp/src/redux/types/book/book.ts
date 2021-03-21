@@ -8,8 +8,8 @@ export type book = {
     name: string;
     author: string;
     description: string;
-    category: string;
     price: number;
+    pages: number;
     imageURL: string;
     genre: string
     edition: string;

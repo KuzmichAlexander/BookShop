@@ -26,16 +26,10 @@ namespace BookShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Edition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Genre")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("HasInStorage")
@@ -47,11 +41,11 @@ namespace BookShop.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Pages")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Pages")
+                        .HasColumnType("int");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -68,12 +62,45 @@ namespace BookShop.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("BookShop.Models.BooksParams.BookAuthors", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Authorid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bookid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BooksAuthors");
+                });
+
+            modelBuilder.Entity("BookShop.Models.BooksParams.BookGenres", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Bookid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Genreid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BooksGenres");
                 });
 
             modelBuilder.Entity("BookShop.Models.BooksParams.Edition", b =>

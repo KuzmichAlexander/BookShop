@@ -4,6 +4,7 @@ $font-color-black: #333;
 $main-green: #199b50;
 $main-yellow: #FFC300;
 $main-red: #ff5733;
+$main-blue: #358fff;
 $box-shadow-color: rgba(33, 33, 33, 0.3);
 $main-transition: all .3s ease;
 
@@ -97,7 +98,7 @@ h2 {
 
 @media (max-width: 770px) {
   .landing-center h1, h2, .landing-about h1 {
-    font-size: 30px !important;
+    font-size: 1.8rem !important;
     letter-spacing: normal;
   }
 }

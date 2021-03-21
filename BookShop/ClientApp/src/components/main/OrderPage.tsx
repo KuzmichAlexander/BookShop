@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {Link, Redirect} from "react-router-dom";
 import {Basket, getAllPrice} from "./modals/Basket";
-import {Order} from "../units/OrderElement";
+import {Order, renderItems} from "../units/OrderElement";
 import {mounthes} from "../units/consts/consts";
 import {getCities} from "../../DAL/api";
 import {log} from "util";
@@ -23,10 +23,6 @@ export const OrderPage = () => {
         setFetchCityFlag(true);
         setCitiesArray(cities);
         console.log(cities);
-    }
-
-    const renderCities = () => {
-        return citiesArray.map(city => <option value={city}></option>)
     }
 
     if (!isAuth) {
@@ -50,7 +46,7 @@ export const OrderPage = () => {
             <input list="data" type="text" value={city} className={'data-list'} onChange={changeCity}/>
             {fetchCityFlag ?
                 <datalist id={"data"}>
-                    {renderCities()}
+                    {renderItems(citiesArray)}
                 </datalist> :
                 <p>Подгружаем города...</p>
             }

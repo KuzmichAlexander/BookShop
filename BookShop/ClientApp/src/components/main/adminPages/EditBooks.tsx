@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {CustomLabel} from "../../units/CustomLabel";
 import {addAuthors, addCity, addEdition, addGenre} from "../../../DAL/api";
+import {AddBook} from "./AddBook";
 
 export const EditBooks = () => {
     //const isAdmin = useTypeSelector(state => state.authUser.isAdmin);
@@ -43,9 +44,9 @@ export const EditBooks = () => {
             <h2>Редактирования всякие разные (книжные конечно же)</h2>
             <div className={'add-elements-container'}>
                 <div className={'add-element'}>
-                    <CustomLabel onChange={(e) => setCityName(e.target.value)} value={cityName} type={'text'} name={'Добавить годод для доставки'} placeholder={'Екатеринбург'} />
-                    {citySuccess ? <p className={citySuccess.includes('уже') ? "message-warning" : "message-success"}>{citySuccess}</p> : null}
-                    <button onClick={addNewCity} className={'submit-button'}>Добавить город в базу</button>
+                    <CustomLabel onChange={(e) => setGenre(e.target.value)} value={genre} type={'text'} name={'Добавить жанр'} placeholder={'Романтичные птички'} />
+                    {genreSuccess ? <p className={genreSuccess.includes('уже') ? "message-warning" : "message-success"}>{genreSuccess}</p> : null}
+                    <button onClick={addNewGenre} className={'submit-button'}>Добавить жанр в базу</button>
                 </div>
                 <div className={'add-element'}>
                     <CustomLabel onChange={(e) => setEdition(e.target.value)} value={edition} type={'text'} name={'Добавить издание'} placeholder={'Альпина Паблишер'} />
@@ -58,13 +59,13 @@ export const EditBooks = () => {
                     <button onClick={addNewAuthor} className={'submit-button'}>Добавить автора в базу</button>
                 </div>
                 <div className={'add-element'}>
-                    <CustomLabel onChange={(e) => setGenre(e.target.value)} value={genre} type={'text'} name={'Добавить жанр'} placeholder={'Романтичные птички'} />
-                    {genreSuccess ? <p className={genreSuccess.includes('уже') ? "message-warning" : "message-success"}>{genreSuccess}</p> : null}
-                    <button onClick={addNewGenre} className={'submit-button'}>Добавить жанр в базу</button>
+                    <CustomLabel onChange={(e) => setCityName(e.target.value)} value={cityName} type={'text'} name={'Добавить город для доставки'} placeholder={'Екатеринбург'} />
+                    {citySuccess ? <p className={citySuccess.includes('уже') ? "message-warning" : "message-success"}>{citySuccess}</p> : null}
+                    <button onClick={addNewCity} className={'submit-button'}>Добавить город в базу</button>
                 </div>
 
             </div>
-
+            <AddBook />
         </div>
     );
 };

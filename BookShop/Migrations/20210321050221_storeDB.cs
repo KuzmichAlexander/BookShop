@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookShop.Migrations
 {
-    public partial class ShopMigration : Migration
+    public partial class storeDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,7 @@ namespace BookShop.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,18 +27,44 @@ namespace BookShop.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Edition = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Pages = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<float>(type: "real", nullable: false),
-                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pages = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     HasInStorage = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BooksAuthors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Bookid = table.Column<int>(type: "int", nullable: false),
+                    Authorid = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BooksAuthors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BooksGenres",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Bookid = table.Column<int>(type: "int", nullable: false),
+                    Genreid = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BooksGenres", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,6 +209,12 @@ namespace BookShop.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Authors");
+
+            migrationBuilder.DropTable(
+                name: "BooksAuthors");
+
+            migrationBuilder.DropTable(
+                name: "BooksGenres");
 
             migrationBuilder.DropTable(
                 name: "Cities");

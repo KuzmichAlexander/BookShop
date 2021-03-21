@@ -12,7 +12,7 @@ type bookType = {
     imageURL: string;
     price: number;
     name: string;
-    id: number;
+    id: number | null | undefined;
 }
 
 export const Book: React.FC<bookType> = ({id, name, author, description, edition, genre, imageURL, price}) => {
@@ -20,6 +20,7 @@ export const Book: React.FC<bookType> = ({id, name, author, description, edition
     const dispatch = useDispatch();
     const isAdmin = useTypeSelector(state => state.booksBasket.orderList);
     const orderToBasket = () => {
+        if(id === null || id === undefined) return;
         dispatch(addBookToBasket({count: 1, name, image: imageURL, bookId: id, price}));
     }
 

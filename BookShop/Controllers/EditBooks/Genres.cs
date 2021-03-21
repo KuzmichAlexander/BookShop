@@ -19,7 +19,7 @@ namespace BookShop.Controllers.EditBooks
         [HttpGet]
         public List<string> Get()
         {
-            var genreList = db.Books.Select(book => book.Genre);
+            var genreList = db.Genres.Select(genre => genre.Name);
             return genreList.ToList();
         }
         [HttpPost]
