@@ -17,7 +17,7 @@ export type book = {
 }
 
 export interface booksState {
-    books: book[];
+    books: fetchedBookType[];
     loading: boolean;
     error: null | string;
 }
@@ -30,7 +30,7 @@ interface bookFetchAction {
 
 interface bookFetchSuccessAction {
     type: fetchBooksActions.FETCH_BOOKS_SUCCESS;
-    payload: book[];
+    payload: fetchedBookType[];
 }
 
 interface bookFetchErrorAction {
@@ -44,4 +44,38 @@ export type fetchBooksOptions = {
     priceAbove?: number;
     priceBelow?: number;
     genre?: string;
+}
+
+export type bookInput = {
+    name: string;
+    description: string;
+    price: number;
+    pages: number;
+    imageURL: string;
+    edition: string;
+    id: number;
+}
+
+export type bookInputParams = {
+    author: string[];
+    genre: string[];
+    name: string;
+}
+
+export type fetchedBookType = {
+    name: string;
+    author: string[];
+    description: string;
+    hasInStorage: boolean;
+    price: number;
+    pages: number;
+    imageURL: string;
+    genre: string[];
+    edition: string;
+    id: number;
+}
+
+export type addBookInStorageType = {
+    name: string;
+    count: number;
 }

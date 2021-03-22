@@ -1,10 +1,12 @@
 import {CustomLabel} from "../../units/CustomLabel";
 import React, {useEffect, useState} from "react";
-import {addNewBook, getAuthors, getCities, getEditions, getGenres} from "../../../DAL/api";
+import {addNewBook, addParamsToNewBook, getAuthors, getCities, getEditions, getGenres} from "../../../DAL/api";
 import {renderItems} from "../../units/OrderElement";
+import {log} from "util";
+import {MultiOptions} from "../../units/consts/MultiOptions";
 
 
-export const AddBook = () => {
+export const AddBookComponent = () => {
     const [bookName, setBookName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [imageURL, setImageURL] = useState<string>('');
@@ -18,14 +20,14 @@ export const AddBook = () => {
     const [edition, setEdition] = useState<string>('');
     const [editionsArray, setEditionsArray] = useState<string[]>([]);
 
-    const [author, setAuthor] = useState<string>('');
+    const [author, setAuthor] = useState<string[]>([]);
     const [authorsArray, setAuthorsArray] = useState<string[]>([]);
 
-    const [genre, setGenre] = useState<string>('');
+    const [genre, setGenre] = useState<string[]>([]);
     const [genresArray, setGenresArray] = useState<string[]>([]);
 
     const [serverAnswer, setServerAnswer] = useState('');
-
+    const [fullServerAnswer, setFullServerAnswer] = useState('');
 
     useEffect(() => {
         fetchEditions();
@@ -71,8 +73,51 @@ export const AddBook = () => {
     }
 
     const sendNewBookToServer = async () => {
-        const result = await addNewBook({genre, author, name: bookName, description, edition, imageURL, pages: +pages, price: +price, id: 0});
+        setServerAnswer('');
+        setFullServerAnswer('');
+        const result = await addNewBook({
+            name: bookName,
+            description,
+            edition,
+            imageURL,
+            pages: +pages,
+            price: +price,
+            id: 0
+        });
         setServerAnswer(result);
+
+        if (!result.includes('уже')) {
+            await sendParamsForNewBook();
+        }
+    }
+
+    const sendParamsForNewBook = async () => {
+        const result = await addParamsToNewBook({author, genre, name: bookName});
+        setFullServerAnswer(result);
+    }
+
+    const onChangeGenre = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (!genre.includes(value) && genresArray.includes(value)) {
+            setGenre([...genre, value]);
+        }
+    }
+
+    const removeGenre = (item: string) => {
+        const filtredList = genre.filter(elem => elem !== item);
+        setGenre(filtredList);
+    }
+
+    const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (!author.includes(value) && authorsArray.includes(value)) {
+            setAuthor([...author, value]);
+        }
+    }
+
+    const removeAuthor = (item: string) => {
+        const filtredList = author.filter(elem => elem !== item);
+        setAuthor(filtredList);
     }
 
     return (
@@ -85,17 +130,7 @@ export const AddBook = () => {
                     <CustomLabel name={'Название книги'} value={bookName} onChange={(e) => setBookName(e.target.value)}
                                  placeholder={"Как устроиться программистом, студенту из ИНМИТА"}/>
                 </div>
-                <div className={'add-book-element'}>
-                    <h3>Автор</h3>
-                    <input list="author" type="text" value={author} className={'data-list'}
-                           onChange={(e) => setAuthor(e.target.value)}/>
-                    {authorsArray.length ?
-                        <datalist id={"author"}>
-                            {renderItems(authorsArray)}
-                        </datalist> :
-                        <p>Подгружаем...</p>
-                    }
-                </div>
+
                 <div className={'add-book-element'}>
                     <CustomLabel name={'Краткое описание'} value={description}
                                  onChange={(e) => setDescription(e.target.value)}
@@ -117,17 +152,6 @@ export const AddBook = () => {
                                  onChange={(e) => setImageURL(e.target.value)} placeholder={""}/>
                 </div>
                 <div className={'add-book-element'}>
-                    <h3>Жанр</h3>
-                    <input list="genres" type="text" value={genre} className={'data-list'}
-                           onChange={(e) => setGenre(e.target.value)}/>
-                    {genresArray.length ?
-                        <datalist id={"genres"}>
-                            {renderItems(genresArray)}
-                        </datalist> :
-                        <p>Подгружаем...</p>
-                    }
-                </div>
-                <div className={'add-book-element'}>
                     <CustomLabel name={'Цена, ₽'} value={price} onChange={priceChange}/>
                     {validPrice ? <p className={'message-warning'}>Только числовые значения</p> : null}
                 </div>
@@ -135,11 +159,15 @@ export const AddBook = () => {
                     <CustomLabel name={'Колличество страниц'} value={pages} onChange={pagesChange}/>
                     {validPages ? <p className={'message-warning'}>Только целые числовые значения</p> : null}
                 </div>
-            </div>
-            {serverAnswer ?
-                <p className={serverAnswer.includes('уже') ? "message-warning" : "message-success"}>{serverAnswer}</p> : null}
-            <button className={'submit-button'} onClick={sendNewBookToServer}>Добавить книгу в ассортимент</button>
 
+                <MultiOptions items={genresArray} title={'Жанр (-ы)'} bookParams={genre} removeItem={removeGenre} onChange={onChangeGenre}/>
+                <MultiOptions items={authorsArray} title={'Автор (-ы)'} bookParams={author} removeItem={removeAuthor} onChange={onChangeAuthor}/>
+            </div>
+            <div>{serverAnswer ?
+                <p className={serverAnswer.includes('уже') ? "message-warning" : "message-success"}>{serverAnswer}</p> : null}
+                {fullServerAnswer ? <p className={serverAnswer.includes('уже') ? "message-warning" : "message-success"}>{fullServerAnswer}</p> : null}
+                <button className={'submit-button'} onClick={sendNewBookToServer}>Добавить книгу в ассортимент</button>
+            </div>
         </>
     );
 };

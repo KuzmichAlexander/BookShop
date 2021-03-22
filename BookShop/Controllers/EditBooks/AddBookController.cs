@@ -20,6 +20,7 @@ namespace BookShop.Controllers.EditBooks
         [HttpPost]
         public string Post(Book ip)
         {
+            
             string token = Request.Headers["Authorization"];
             var trueAdmin = db.Users.FirstOrDefault(user => user.Token == token);
 
@@ -30,7 +31,7 @@ namespace BookShop.Controllers.EditBooks
 
             if (db.Books.FirstOrDefault(book => book.Name == ip.Name) != null)
             {
-                return ServerResponses.ElementWasExisted;
+                return ServerResponses.SameBookName;
             }
             
             Book NewBook = new Book();
@@ -45,13 +46,67 @@ namespace BookShop.Controllers.EditBooks
 
             db.Books.Add(NewBook);
             db.SaveChanges();
+            
+            
+            
+            
 
             Storage st = new Storage();
 
             db.StoragePositions.Add(st);
             db.SaveChanges();
 
-            return ServerResponses.ElementWasAdded;
+            return ServerResponses.AddStartBook;
+        }
+
+        [HttpPut]
+        public string Put(InputBookData ip)
+        {
+            ip.Author.ForEach(author =>
+            {
+                BookAuthors ba = new BookAuthors();
+                ba.Authorid = db.Authors.First(a => a.Name == author).Id;
+                ba.Bookid = db.Books.First(a => a.Name == ip.Name).Id;
+                db.BooksAuthors.Add(ba);
+                db.SaveChanges();
+            });
+            
+            ip.Genre.ForEach(genre =>
+            {
+                BookGenres bg = new BookGenres();
+                bg.Genreid = db.Genres.First(a => a.Name == genre).Id;
+                bg.Bookid = db.Books.First(a => a.Name == ip.Name).Id;
+                db.BooksGenres.Add(bg);
+                db.SaveChanges();
+            });
+            return ServerResponses.AddAuthorsGenres;
+        }
+
+        [HttpPatch]
+        public string Patch(InputBooksInStorage ib)
+        {
+            var id = db.Books.FirstOrDefault(book => book.Name == ib.Name);
+
+            if (id == null)
+            {
+                return ServerResponses.NoFoundBookName;
+            }
+
+            var StoragePosition = db.StoragePositions.First(storage => storage.Id == id.Id);
+
+            StoragePosition.Count += ib.Count;
+
+            db.Attach(StoragePosition);
+            db.SaveChanges();
+
+            return ServerResponses.AddInStorage(ib.Count, ib.Name);
+        }
+
+        [HttpGet]
+        public List<string> Get()
+        {
+            var BooksName = db.Books.Select(book => book.Name).ToList();
+            return BooksName;
         }
     }
 }

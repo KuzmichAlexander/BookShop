@@ -40,7 +40,6 @@ $border: 1px solid #ccc;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
   }
 
 }
@@ -70,14 +69,16 @@ $border: 1px solid #ccc;
   box-shadow: 1px 1px 8px $box-shadow-color;
 
   .more-info {
-    display: none;
+    opacity: 0;
     overflow: hidden;
+    z-index: 51;
+    transition: $main-transition;
   }
 
   .image-container {
     width: 252px;
     height: 336px;
-    margin: 0 auto;
+    margin: 0 auto !important;
 
     img {
       width: 100%;
@@ -87,8 +88,6 @@ $border: 1px solid #ccc;
   }
 
   .book-info {
-    margin-top: 15px;
-
 
     h3 {
       font-size: 22px;
@@ -111,13 +110,13 @@ $border: 1px solid #ccc;
     .more-info {
       top: -15px;
       left: -15px;
-      z-index: 20;
+      z-index: 30;
       position: absolute;
       width: 150%;
-      height: 150%;
+      box-sizing: border-box;
       transform: translateX(-20%);
       background-color: $background-color;
-      display: block;
+      opacity: 1;
       border: $border;
       box-shadow: 2px 2px 20px $box-shadow-color;
       text-align: left;
@@ -128,19 +127,26 @@ $border: 1px solid #ccc;
         margin: 15px;
       }
 
+      .price-description-more {
+        display: flex;
+        align-items: center ;
+        justify-content: space-between;
+      }
+
       .description {
         margin-top: 8px;
         display: flex;
-        align-items: center;
+        align-items: stretch;
 
         .bucket-button {
-          margin: 0 20px;
+          margin: 0 !important;
         }
 
         h4 {
           font-weight: 400;
-          font-size: 18px;
+          font-size: 16px;
           opacity: .7;
+          padding-right: 7px;
 
           &:after {
             content: ' ';
@@ -149,7 +155,7 @@ $border: 1px solid #ccc;
 
         p {
           font-weight: 400;
-          font-size: 18px;
+          font-size: 16px;
         }
       }
 
@@ -173,3 +179,10 @@ $border: 1px solid #ccc;
   margin: 15px 0;
 }
 
+.m0 {
+  margin: 0 !important;
+}
+
+.mr10 {
+  margin-right: 10px;
+}

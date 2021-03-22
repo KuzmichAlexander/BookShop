@@ -1,4 +1,4 @@
-import {book, fetchBookAction, fetchBooksActions, fetchBooksOptions} from "../../types/book/book";
+import {book, fetchBookAction, fetchBooksActions, fetchBooksOptions, fetchedBookType} from "../../types/book/book";
 import {Dispatch} from "redux";
 import axios from "axios";
 import {baseUrl} from '../../../components/units/consts/consts';
@@ -15,8 +15,9 @@ export const fetchBooks = (options: fetchBooksOptions) => {
             }
             dispatch({type: fetchBooksActions.FETCH_BOOKS});
 
-            const {data} = await axios.post(`${baseUrl}/api/Books`, options);
-
+            const response  = await axios.post(`${baseUrl}/api/Books`, options);
+            const data: fetchedBookType[] = response.data;
+            console.log(data)
             dispatch({type: fetchBooksActions.FETCH_BOOKS_SUCCESS, payload: data});
 
         } catch (e) {

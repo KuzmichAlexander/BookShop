@@ -1,6 +1,6 @@
 import axios from "axios";
 import {baseUrl, token} from "../components/units/consts/consts";
-import {book} from "../redux/types/book/book";
+import {addBookInStorageType, book, bookInput, bookInputParams} from "../redux/types/book/book";
 
 
 export const getGenres = async () => {
@@ -43,8 +43,26 @@ export const addGenre = async (genre: string) => {
     return data;
 }
 
-export const addNewBook = async (book: book) => {
+export const addNewBook = async (book: bookInput) => {
     const token = localStorage.getItem('token');
     const {data} = await axios.post(`${baseUrl}/api/AddBook`, book, {headers: {Authorization: token}});
     return data;
 }
+
+export const addParamsToNewBook = async (book: bookInputParams) => {
+    const token = localStorage.getItem('token');
+    const {data} = await axios.put(`${baseUrl}/api/AddBook`, book, {headers: {Authorization: token}});
+    return data;
+}
+
+export const getBooksName = async () => {
+    const {data} = await axios.get(`${baseUrl}/api/AddBook`, {headers: {Authorization: token}});
+    return data;
+}
+
+export const AddBookIntoStorage = async (book: addBookInStorageType) => {
+    const {data} = await axios.patch(`${baseUrl}/api/AddBook`, book, {headers: {Authorization: token}});
+    return data;
+}
+
+

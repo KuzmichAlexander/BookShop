@@ -4,7 +4,7 @@
   flex-wrap: wrap;
 
   .add-element {
-    height: 200px;
+    min-height: 200px;
     padding-right: 50px;
     width: 33%;
     box-sizing: border-box;
@@ -22,28 +22,60 @@
 .add-book-container {
   display: flex;
   flex-wrap: wrap;
+}
 
-  .add-book-element {
-    width: 45%;
-    padding-right: 5%;
-    height: 150px;
+.add-book-element {
+  width: 45%;
+  padding-right: 5%;
+  min-height: 150px;
 
-    .data-list {
-      border: none;
-      padding: 4px;
-      border-bottom: 2px solid $main-blue;
-      outline: none;
-      width: 100%;
+  .data-list {
+    border: none;
+    padding: 4px;
+    border-bottom: 2px solid $main-blue;
+    outline: none;
+    width: 100%;
+  }
 
+  h3 {
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+}
 
-    }
+.multi-inputs-container {
+  .selected-items {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 
-    h3 {
-      font-size: 24px;
-      font-weight: 300;
-      margin-bottom: 10px;
+.selected-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  padding: 10px;
+
+  background-color: $main-blue;
+  color: $font-color-white;
+  margin: 3px 0;
+  border-radius: 10px;
+
+  &-name {
+    color: $font-color-white;
+  }
+
+  .remove-item {
+    transform: scaleX(1.3);
+
+    &:hover {
+      cursor: pointer;
+      color: #adb5bd;
     }
   }
+
 }
 
 @media (max-width: 1080px) {

@@ -5,6 +5,7 @@ import concentration from '../../../images/landing/concentration.svg';
 import cake from '../../../images/landing/cake.svg';
 
 export const Home: React.FC = () => {
+    document.title = "WildBooki";
 
     return (
         <>

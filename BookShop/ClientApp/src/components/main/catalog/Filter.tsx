@@ -1,7 +1,9 @@
-import React, {ChangeEvent, Dispatch, SetStateAction, useState} from "react";
+import React, {ChangeEvent, Dispatch, SetStateAction, useEffect, useState} from "react";
 import {CustomLabel} from "../../units/CustomLabel";
 import {createSelect} from "../../units/consts/consts";
 import {useActions} from "../../../hooks/useActions";
+import {getGenres} from "../../../DAL/api";
+import {renderItems} from "../../units/OrderElement";
 
 export const Filter: React.FC = () => {
     const [name, setName] = useState<string>('');
@@ -10,10 +12,15 @@ export const Filter: React.FC = () => {
     const [genre, setGenre] = useState<string>('');
     const {fetchBooks} = useActions();
 
+    const [genresArray, setGenresArray] = useState<string[]>([]);
 
     const nameChange = (e: ChangeEvent<HTMLInputElement>): void => {
         setName(e.target.value);
     }
+
+    useEffect(() => {
+        fetchGenres();
+    }, []);
 
 
     const filterChange = (e : React.FormEvent<HTMLFormElement>) => {
@@ -25,6 +32,11 @@ export const Filter: React.FC = () => {
             priceBelow: parseFloat(priceBelow),
             genre
         })
+    }
+
+    const fetchGenres = async () => {
+        const genres = await getGenres();
+        setGenresArray(genres);
     }
 
 
@@ -44,9 +56,13 @@ export const Filter: React.FC = () => {
                 </div>
 
                 <h2 style={{border: 'none'}}>Категория</h2>
-                <select value={genre} onChange={(e) => setGenre(e.target.value)}>
-                    {createSelect()}
-                </select>
+                {genresArray.length ?
+                    <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+                        {renderItems(genresArray)}
+                    </select>
+                    : <p>подгружаем...</p>
+                }
+
 
                 <button className={'custom-button submit-button'} type={'submit'}>Поиск</button>
             </form>

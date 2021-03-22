@@ -17,23 +17,22 @@ namespace BookShop.Controllers.EditBooks
         DBContext db = new DBContext();
         // GET: EditBookController
         [HttpGet]
-       // public List<string> Get()
-       // {
-            //var genreList = db.Authors.Select(author => author.Name);
-           // return genreList.ToList();
-          // return 
-        //}
+        public List<string> Get()
+        {
+            var authorList = db.Authors.Select(author => author.Name);
+            return authorList.ToList();
+        }
         [HttpPost]
         public string Post(inputAddParams ip)
         {
-            //if (db.Authors.FirstOrDefault(author => author.Name == ip.Name) != null)
-           // {
-           //     return ServerResponses.ElementWasExisted;
-           // }
+            if (db.Authors.FirstOrDefault(author => author.Name == ip.Name) != null)
+            {
+                return ServerResponses.ElementWasExisted;
+            }
 
             Author author = new Author();
             author.Name = ip.Name;
-           // db.Authors.Add(author);
+            db.Authors.Add(author);
             db.SaveChanges();
             return ServerResponses.ElementWasAdded;
         }

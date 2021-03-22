@@ -44,5 +44,5 @@ export const Order: React.FC<OrderType> = ({count, name, image, bookId, price}) 
 }
 
 export const renderItems = (itemsList: string[]) => {
-    return itemsList.map(item => <option value={item}></option>)
+    return itemsList.map(item => <option key={item} value={item}>{item}</option>)
 }

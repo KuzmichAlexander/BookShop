@@ -5,6 +5,7 @@ import {useActions} from "../../../hooks/useActions";
 
 
 export const Catalog: React.FC = () => {
+    document.title = "Каталог";
     const {fetchBooks} = useActions();
 
     useEffect(() => {

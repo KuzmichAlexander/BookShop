@@ -1,4 +1,4 @@
-import {fetchBooksActions, booksState, fetchBookAction} from "../../types/book/book";
+import {fetchBooksActions, booksState, fetchBookAction, fetchedBookType} from "../../types/book/book";
 
 const initialState: booksState = {
     books: [],
