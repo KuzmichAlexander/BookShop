@@ -60,7 +60,7 @@ namespace BookShop.Controllers.EditBooks
         }
 
         [HttpPut]
-        public string Put(InputBookData ip)
+        public string Put(InputBookData ip) //добавление авторов и жанров
         {
             ip.Author.ForEach(author =>
             {
@@ -83,7 +83,7 @@ namespace BookShop.Controllers.EditBooks
         }
 
         [HttpPatch]
-        public string Patch(InputBooksInStorage ib)
+        public string Patch(InputBooksInStorage ib) //добавление на склад
         {
             var id = db.Books.FirstOrDefault(book => book.Name == ib.Name);
 

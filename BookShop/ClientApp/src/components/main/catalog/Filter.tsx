@@ -58,6 +58,7 @@ export const Filter: React.FC = () => {
                 <h2 style={{border: 'none'}}>Категория</h2>
                 {genresArray.length ?
                     <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+                        <option style={{color:'#777'}} value="nth">Не выбрана</option>
                         {renderItems(genresArray)}
                     </select>
                     : <p>подгружаем...</p>

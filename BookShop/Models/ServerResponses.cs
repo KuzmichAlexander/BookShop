@@ -21,6 +21,9 @@ namespace BookShop.Models
         
         
         public static string NoFoundBookName = "Книги с таким названием не существует";
+        public static string PayOperationSuccess = "Транзакция прошла успешно.";
+        
+        
 
 
         public static string AddInStorage(int count, string name)

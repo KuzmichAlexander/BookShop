@@ -1,12 +1,14 @@
 import {CustomLabel} from "../../units/CustomLabel";
 import React, {useEffect, useState} from "react";
-import {addNewBook, addParamsToNewBook, getAuthors, getCities, getEditions, getGenres} from "../../../DAL/api";
+import {addNewBook, addParamsToNewBook, getAuthors, getEditions, getGenres} from "../../../DAL/api";
 import {renderItems} from "../../units/OrderElement";
-import {log} from "util";
 import {MultiOptions} from "../../units/consts/MultiOptions";
 
+type bkType = {
+    visible: boolean;
+}
 
-export const AddBookComponent = () => {
+export const AddBookComponent: React.FC<bkType> = ({visible}) => {
     const [bookName, setBookName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [imageURL, setImageURL] = useState<string>('');
@@ -17,7 +19,7 @@ export const AddBookComponent = () => {
     const [pages, setPages] = useState<string>('0');
     const [validPages, setValidPages] = useState<boolean>(false);
 
-    const [edition, setEdition] = useState<string>('');
+    const [edition, setEdition] = useState<string[]>([]);
     const [editionsArray, setEditionsArray] = useState<string[]>([]);
 
     const [author, setAuthor] = useState<string[]>([]);
@@ -78,7 +80,7 @@ export const AddBookComponent = () => {
         const result = await addNewBook({
             name: bookName,
             description,
-            edition,
+            edition: edition[0],
             imageURL,
             pages: +pages,
             price: +price,
@@ -112,6 +114,7 @@ export const AddBookComponent = () => {
         const value = e.target.value;
         if (!author.includes(value) && authorsArray.includes(value)) {
             setAuthor([...author, value]);
+
         }
     }
 
@@ -120,11 +123,20 @@ export const AddBookComponent = () => {
         setAuthor(filtredList);
     }
 
+    const onChangeEdition = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        if (!edition.includes(value) && editionsArray.includes(value)) {
+            setEdition([value]);
+        }
+    }
+
+    const removeEdition = (item: string) => {
+        const filtredList = edition.filter(elem => elem !== item);
+        setEdition(filtredList);
+    }
+
     return (
-        <>
-            <h2>Добавление книги</h2>
-            <br/>
-            <br/>
+        <div className={visible ? 'm-top-bottom-20' : 'm-top-bottom-20 hide-container'}>
             <div className={'add-book-container'}>
                 <div className={'add-book-element'}>
                     <CustomLabel name={'Название книги'} value={bookName} onChange={(e) => setBookName(e.target.value)}
@@ -136,17 +148,7 @@ export const AddBookComponent = () => {
                                  onChange={(e) => setDescription(e.target.value)}
                                  placeholder={"Просто люби своё дело, следуй принципам и целям"}/>
                 </div>
-                <div className={'add-book-element'}>
-                    <h3>Издание</h3>
-                    <input list="editions" type="text" value={edition} className={'data-list'}
-                           onChange={(e) => setEdition(e.target.value)}/>
-                    {editionsArray.length ?
-                        <datalist id={"editions"}>
-                            {renderItems(editionsArray)}
-                        </datalist> :
-                        <p>Подгружаем...</p>
-                    }
-                </div>
+                <MultiOptions items={editionsArray} title={'Издание'} bookParams={edition} removeItem={removeEdition} onChange={onChangeEdition}/>
                 <div className={'add-book-element'}>
                     <CustomLabel name={'Ссылка на картинку'} value={imageURL}
                                  onChange={(e) => setImageURL(e.target.value)} placeholder={""}/>
@@ -168,6 +170,6 @@ export const AddBookComponent = () => {
                 {fullServerAnswer ? <p className={serverAnswer.includes('уже') ? "message-warning" : "message-success"}>{fullServerAnswer}</p> : null}
                 <button className={'submit-button'} onClick={sendNewBookToServer}>Добавить книгу в ассортимент</button>
             </div>
-        </>
+        </div>
     );
 };

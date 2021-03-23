@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {renderItems} from "../OrderElement";
 
 type multiOptionsType = {
@@ -10,11 +10,17 @@ type multiOptionsType = {
 }
 
 export const MultiOptions: React.FC<multiOptionsType> = ({title, items, bookParams,onChange, removeItem}) => {
+    const [value, setValue] = useState<string>('');
+
     return (
         <div className={'add-book-element'}>
             <h3>{title}</h3>
             <input list={title} type="text" className={'data-list'}
-                   onChange={onChange}/>
+                   onChange={
+                       (e) => {onChange(e)
+                        setValue(e.target.value)
+                       }
+                   } value={value}  onClick={() => setValue('')}/>
             {items.length ?
                 <datalist id={title}>
                     {renderItems(items)}

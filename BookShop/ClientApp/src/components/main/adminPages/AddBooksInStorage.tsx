@@ -4,7 +4,11 @@ import {AddBookIntoStorage, getBooksName} from "../../../DAL/api";
 import {MultiOptions} from "../../units/consts/MultiOptions";
 import {CustomLabel} from "../../units/CustomLabel";
 
-export const AddBooksInStorage = () => {
+type bkType = {
+    visible: boolean;
+}
+
+export const AddBooksInStorage:React.FC<bkType> = ({visible}) => {
     const [namesArray, setNames] = useState<string[]>([]);
     const [name, setName] = useState<string[]>([]);
     const [count, setCount] = useState<string>('0');
@@ -51,11 +55,7 @@ export const AddBooksInStorage = () => {
 
 
     return (
-        <div>
-            <br/>
-            <h2>Добавление книг на склад</h2>
-            <br/>
-            <br/>
+        <div className={visible ? 'm-top-bottom-20' : 'm-top-bottom-20 hide-container'}>
             <div className={'add-book-container'}>
                 <MultiOptions items={namesArray} title={'Выбирите книгу по названию'} bookParams={name}
                               removeItem={removeName} onChange={onChangeName}/>

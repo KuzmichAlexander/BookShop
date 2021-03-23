@@ -80,6 +80,31 @@ h2 {
   }
 }
 
+.message-neutral {
+  color: #adb5bd;
+}
+
+.message-warning-mini {
+  color: $main-red;
+  opacity: .7;
+  font-size: 16px;
+}
+
+.message-success-mini {
+  color: $main-green;
+  opacity: .7;
+  font-size: 16px;
+}
+
+.message-warning {
+  color: $main-red;
+  font-size: 18px;
+}
+
+.message-success {
+  color: $main-green;
+  font-size: 18px;
+}
 
 
 @media (max-width: 1280px) {

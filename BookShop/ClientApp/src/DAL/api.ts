@@ -65,4 +65,9 @@ export const AddBookIntoStorage = async (book: addBookInStorageType) => {
     return data;
 }
 
+export const payFetchOperation = async () => {
+    const {data} = await axios.get(`${baseUrl}/api/PayOperation`, {headers: {Authorization: token}});
+    return data;
+}
+
 

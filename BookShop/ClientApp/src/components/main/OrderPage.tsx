@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useTypeSelector} from "../../hooks/useTypeSelector";
-import {Link, Redirect} from "react-router-dom";
-import {Basket, getAllPrice} from "./modals/Basket";
+import {Redirect} from "react-router-dom";
+import {getAllPrice} from "./modals/Basket";
 import {Order, renderItems} from "../units/OrderElement";
 import {mounthes} from "../units/consts/consts";
 import {getCities} from "../../DAL/api";
-import {log} from "util";
+import {PayModal} from "./modals/PayModal";
+import {Loader} from "../units/Loader";
 
 export const OrderPage = () => {
     const isAuth = useTypeSelector(state => state.authUser.name);
@@ -14,7 +15,11 @@ export const OrderPage = () => {
     const [citiesArray, setCitiesArray] = useState<string[]>([]);
     const [fetchCityFlag, setFetchCityFlag] = useState<boolean>(false);
 
-    useEffect(  () => {
+    const [emptyCityWarning, setEmptyCityWarning] = useState<boolean>(false);
+    const [payModal, setPayModal] = useState<boolean>(false);
+
+
+    useEffect(() => {
         fetchCities();
     }, [])
 
@@ -22,15 +27,32 @@ export const OrderPage = () => {
         const cities = await getCities();
         setFetchCityFlag(true);
         setCitiesArray(cities);
-        console.log(cities);
     }
 
-    if (!isAuth) {
-        return <Redirect to={'/registration'}/>
+    const fetchOrder = () => {
+        //доделать операцию покупок
+
     }
+
+    // if (!isAuth) {
+    //     return <Redirect to={'/registration'}/>
+    // }
 
     const changeCity = (e: any) => {
+        setEmptyCityWarning(false);
         setCity(e.target.value);
+    }
+
+    const goToPay = () => {
+        if (!city) {
+            setEmptyCityWarning(true);
+            return;
+        }
+        changeModal();
+    }
+
+    const changeModal = () => {
+        setPayModal(!payModal);
     }
 
     const date = new Date();
@@ -41,7 +63,8 @@ export const OrderPage = () => {
             {list.map(order => <Order key={order.bookId} {...order}  />)}
             <h2 style={{fontWeight: 400, textAlign: "right", border: "none"}}>К оплате: {getAllPrice(list)}</h2>
             <p className={'order-info'}>Оринтировочное время
-                доставки: <u> {new Date(date.setHours(96)).getDate()}-{new Date(date.setHours(140)).getDate()} {mounthes[new Date(date.setHours(140)).getUTCMonth() - 1]}</u></p>
+                доставки: <u> {new Date(date.setHours(96)).getDate()}-{new Date(date.setHours(140)).getDate()} {mounthes[new Date(date.setHours(140)).getUTCMonth()]}</u>
+            </p>
             <p className={'order-info'}>Выбирите город доставки:</p>
             <input list="data" type="text" value={city} className={'data-list'} onChange={changeCity}/>
             {fetchCityFlag ?
@@ -50,7 +73,11 @@ export const OrderPage = () => {
                 </datalist> :
                 <p>Подгружаем города...</p>
             }
-            <button className={'submit-button'}>Перейти к оплате</button>
+            {emptyCityWarning ?
+                <p className={'message-warning-mini'}>Перед оплатой, необходимо выбрать город доставки</p> : null}
+            <button onClick={goToPay} className={'submit-button'}>Перейти к оплате</button>
+            {payModal ? <PayModal city={city} changeModal={changeModal}/> : null}
+
         </>
     );
-};
+}

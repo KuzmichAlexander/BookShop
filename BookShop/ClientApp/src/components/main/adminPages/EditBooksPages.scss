@@ -2,6 +2,7 @@
   display: flex;
   margin: 25px 0;
   flex-wrap: wrap;
+  border-bottom: 2px solid $main-blue;
 
   .add-element {
     min-height: 200px;
@@ -28,6 +29,7 @@
   width: 45%;
   padding-right: 5%;
   min-height: 150px;
+
 
   .data-list {
     border: none;
@@ -78,6 +80,16 @@
 
 }
 
+.m-top-bottom-20 {
+  margin: 20px 0;
+}
+
+.hide-container {
+  overflow: hidden;
+  height: 0;
+}
+
+
 @media (max-width: 1080px) {
   .add-elements-container {
     .add-element {
@@ -104,4 +116,32 @@
       text-align: center;
     }
   }
+}
+
+.edit-description {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid $main-green;
+
+  h2 {
+    border: none;
+  }
+}
+
+.triangle-closed {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent #199b4f;
+  margin-right: 10px;
+}
+
+.triangle-opened {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 6px 0 6px;
+  border-color: #199b4f transparent transparent transparent;
+  margin-right: 10px;
 }

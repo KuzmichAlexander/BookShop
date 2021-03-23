@@ -173,3 +173,51 @@
     }
   }
 }
+
+.pay-modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: $font-color-white;
+  padding: 20px;
+  border-radius: 10px;
+
+  button {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 400;
+    border-bottom: 2px solid $main-yellow;
+
+  }
+
+
+  .pay-modal-label {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+
+    p {
+      font-size: 18px;
+    }
+
+    .card-number {
+      border: none;
+      outline: none;
+      width: 195px;
+      border-bottom: 2px $main-green solid;
+      padding: 5px;
+      letter-spacing: 1px;
+      font-size: 18px;
+      margin-left: 5px;
+    }
+
+    .card-date {
+      width: 65px !important;
+    }
+  }
+}

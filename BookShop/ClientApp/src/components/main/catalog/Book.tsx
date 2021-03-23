@@ -22,8 +22,11 @@ export const Book: React.FC<fetchedBookType> = ({id, hasInStorage, pages, name, 
             </div>
             <div className={'book-info'}>
                 <h3>{name}</h3>
-                <p>genre</p>
+                <p>{arrayParamsParse(genre)}</p>
                 <p className={'book-price'}>{price}</p>
+                {hasInStorage
+                    ? <p className={'message-success-mini'}>в наличии</p>
+                    : <p className={'message-warning-mini'}>нет в наличии</p>}
             </div>
             <div className={'more-info'}>
                 <div className={'image-container'}>
@@ -32,7 +35,7 @@ export const Book: React.FC<fetchedBookType> = ({id, hasInStorage, pages, name, 
                 <div className={'book-info'}>
                     <h3>{name}</h3>
                     <div className={'description'}><h4>Автор:</h4><p>{arrayParamsParse(author)}</p></div>
-                    <div className={'description'}><h4>Жанр:</h4><p>genre</p></div>
+                    <div className={'description'}><h4>Жанр:</h4><p>{arrayParamsParse(genre)}</p></div>
                     <div className={'description'}><h4>Издание:</h4><p>{edition}</p></div>
                     <div className={'description'}><h4>Кол-во страниц:</h4><p>{pages}</p></div>
                     <div className={'description'}><h4>Описание:</h4><p>{description}</p></div>
@@ -51,7 +54,6 @@ export const Book: React.FC<fetchedBookType> = ({id, hasInStorage, pages, name, 
 
 const arrayParamsParse = (items: string[] = ['пока пусто, позже будет']) :string => {
     let str: string = ' ';
-    console.log(items)
     items.forEach(item => {
         str += item + ' / '
     });

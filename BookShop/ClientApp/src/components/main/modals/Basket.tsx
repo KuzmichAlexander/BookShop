@@ -1,9 +1,5 @@
-import {CustomLabel} from "../../units/CustomLabel";
 import React from "react";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
-import {useActions} from "../../../hooks/useActions";
-import {useDispatch} from "react-redux";
-import {addBookToBasket, removeBookFromBasket} from "../../../redux/action-creators/books/books";
 import {order} from "../../../redux/types/book/Basket";
 import {Link} from "react-router-dom";
 import {Order} from "../../units/OrderElement";

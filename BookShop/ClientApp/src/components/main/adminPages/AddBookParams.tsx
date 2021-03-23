@@ -2,7 +2,11 @@ import React, {useState} from 'react';
 import {addAuthors, addCity, addEdition, addGenre} from "../../../DAL/api";
 import {CustomLabel} from "../../units/CustomLabel";
 
-export const AddBookParams = () => {
+type bkType = {
+    visible: boolean;
+}
+
+export const AddBookParams: React.FC<bkType> = ({visible}) => {
     const [cityName, setCityName] = useState<string>('');
     const [authorName, setAuthorName] = useState<string>('');
     const [edition, setEdition] = useState<string>('');
@@ -35,8 +39,7 @@ export const AddBookParams = () => {
     }
 
     return (
-        <div>
-            <h2>Редактирования всякие разные (книжные конечно же)</h2>
+        <div className={visible ? 'm-top-bottom-20' : 'm-top-bottom-20 hide-container'}>
             <div className={'add-elements-container'}>
                 <div className={'add-element'}>
                     <CustomLabel onChange={(e) => setGenre(e.target.value)} value={genre} type={'text'}
