@@ -46,3 +46,11 @@ export const getsBookFromBasket = () => {
     };
 };
 
+export const clearBasket = () => {
+    return {
+        type: orderBooksActions.CLEAR_BASKET
+    };
+};
+
+
+

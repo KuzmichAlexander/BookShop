@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookShop.Migrations
 {
-    public partial class storeDB : Migration
+    public partial class storeDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,6 +81,22 @@ namespace BookShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Deliveries",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReceivedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsReceived = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    PurchasesHash = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Deliveries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Editions",
                 columns: table => new
                 {
@@ -104,6 +120,25 @@ namespace BookShop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Genres", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Purchases",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<int>(type: "int", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RegistrationDataId = table.Column<int>(type: "int", nullable: false),
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Purchases", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,78 +172,15 @@ namespace BookShop.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Purchases",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<int>(type: "int", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RegistrationDataId = table.Column<int>(type: "int", nullable: false),
-                    BookId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Purchases", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Purchases_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Purchases_Users_RegistrationDataId",
-                        column: x => x.RegistrationDataId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Deliveries",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ReceivedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsReceived = table.Column<bool>(type: "bit", nullable: false),
-                    PurchaseId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Deliveries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Deliveries_Purchases_PurchaseId",
-                        column: x => x.PurchaseId,
-                        principalTable: "Purchases",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Deliveries_PurchaseId",
-                table: "Deliveries",
-                column: "PurchaseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Purchases_BookId",
-                table: "Purchases",
-                column: "BookId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Purchases_RegistrationDataId",
-                table: "Purchases",
-                column: "RegistrationDataId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Authors");
+
+            migrationBuilder.DropTable(
+                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "BooksAuthors");
@@ -229,13 +201,10 @@ namespace BookShop.Migrations
                 name: "Genres");
 
             migrationBuilder.DropTable(
-                name: "StoragePositions");
-
-            migrationBuilder.DropTable(
                 name: "Purchases");
 
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "StoragePositions");
 
             migrationBuilder.DropTable(
                 name: "Users");

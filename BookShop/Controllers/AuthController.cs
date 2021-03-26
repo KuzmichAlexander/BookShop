@@ -48,7 +48,7 @@ namespace BookShop.Controllers
         }
 
 
-
+        [NonAction]
         public UserAuthData ParseToken(string token)
         {
             var user = new UserAuthData();

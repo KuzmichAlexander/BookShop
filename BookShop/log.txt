@@ -1,1 +1,1 @@
-{"Id":1,"Name":"\u0421\u0430\u043D\u044F","Surname":"\u0438\u0437 \u041A\u043E\u043D\u0442\u0443\u0440\u0430","Email":"\u0444","Login":"q","Password":"22ea1c649c82946aa6e479e1ffd321e4a318b1b0","Token":"8819a9b341da3336770f7258ff6984cac8cb1c58","IsAdmin":true}
+{"Id":1,"Name":"\u0421\u0430\u043D\u044F","Surname":"\u0438\u0437 \u041A\u043E\u043D\u0442\u0443\u0440\u0430","Email":"alex@mail.ru","Login":"san","Password":"17ba0791499db908433b80f37c5fbc89b870084b","Token":"0d140ce18f0f4791947f6dcdbf8e576b8a241402","IsAdmin":true}

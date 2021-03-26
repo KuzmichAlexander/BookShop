@@ -221,3 +221,23 @@
     }
   }
 }
+
+.clear-basket {
+  cursor: pointer;
+  text-align: right;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.go-to-profile {
+  color: $font-color-black !important;
+  background-color: $font-color-white !important;
+  padding: 0 !important;
+  margin: 10px 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

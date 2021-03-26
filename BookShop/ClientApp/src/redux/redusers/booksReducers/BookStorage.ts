@@ -27,8 +27,6 @@ export const BookStorageReduсer = (state = initialState, action: orderBookActio
                 localStorage.setItem('booksInBasket', JSON.stringify([...state.orderList, action.payload]))
                 return {orderList: [...state.orderList, action.payload]};
             }
-
-
         case orderBooksActions.REMOVE_BOOK:
             const newOrderList = state.orderList.map(order => {
                 if (order.bookId === action.payload) {
@@ -48,6 +46,8 @@ export const BookStorageReduсer = (state = initialState, action: orderBookActio
                 return {orderList: JSON.parse(books)};
             }
             return {...state};
+        case orderBooksActions.CLEAR_BASKET:
+            return {orderList: []};
         default:
             return state;
     }

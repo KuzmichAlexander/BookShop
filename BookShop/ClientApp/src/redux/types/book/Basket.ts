@@ -8,6 +8,7 @@ export type order = {
     count: number;
     image: string;
     price: number;
+    location?: string;
 }
 
 export enum orderBooksActions {
@@ -15,9 +16,10 @@ export enum orderBooksActions {
     REMOVE_BOOK = 'REMOVE_BOOK',
     ORDER_BOOK = 'ORDER_BOOK',
     GET_BOOKS_FROM_LOCALSTORAGE = 'GET_BOOKS_FROM_LOCALSTORAGE',
+    CLEAR_BASKET = 'CLEAR_BASKET',
 }
 
-export type orderBookActions = addBookAction | removeBookAction | orderBookAction | getBookAction
+export type orderBookActions = addBookAction | removeBookAction | orderBookAction | getBookAction | clearBasket
 
 export interface addBookAction {
     type: orderBooksActions.ADD_BOOK;
@@ -37,3 +39,8 @@ interface orderBookAction {
 interface getBookAction {
     type: orderBooksActions.GET_BOOKS_FROM_LOCALSTORAGE;
 }
+
+interface clearBasket {
+    type: orderBooksActions.CLEAR_BASKET;
+}
+

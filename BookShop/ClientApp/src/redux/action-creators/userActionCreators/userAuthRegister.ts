@@ -2,6 +2,8 @@ import {Dispatch} from "redux";
 import {userAuthAction, userAuthActions} from "../../types/user/user";
 import {baseUrl, token} from "../../../components/units/consts/consts";
 import axios from "axios";
+import {clearBasket} from "../books/books";
+import {orderBookActions} from "../../types/book/Basket";
 
 export const userAuth = (login: string, password: string, save: boolean = true) => {
     return async function (dispatch: Dispatch<userAuthAction>) {
@@ -46,6 +48,7 @@ export const userLoguot = () => {
     return function (dispatch: Dispatch<userAuthAction>) {
         localStorage.removeItem(token);
         localStorage.removeItem('booksInBasket');
+
         dispatch({type: userAuthActions.USER_LOGOUT});
     }
 }

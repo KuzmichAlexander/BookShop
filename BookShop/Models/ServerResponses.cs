@@ -23,8 +23,12 @@ namespace BookShop.Models
         public static string NoFoundBookName = "Книги с таким названием не существует";
         public static string PayOperationSuccess = "Транзакция прошла успешно.";
         
+        public static string OrderSuccess = "Заказ прошёл успешно, ожидайте поступления";
         
-
+        public static string StorageReject(string name)
+        {
+            return $"Похоже что {name} уже раскупили и такого колличества книг нет на складе. Все транзакции отменены!";
+        }
 
         public static string AddInStorage(int count, string name)
         {

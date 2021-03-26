@@ -44,7 +44,6 @@ export const Nav: React.FC = () => {
                     <div className={'logo'}></div>
                     <Link to={'/'}>Главная</Link>
                     <Link to={'/catalog'}>Каталог</Link>
-                    <Link to={'/calc'}>Канкулятор анжуманий</Link>
                 </nav>
                 {userName ?
                     <div className={'user-actions'}>

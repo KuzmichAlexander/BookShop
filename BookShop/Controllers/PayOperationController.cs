@@ -12,7 +12,7 @@ namespace BookShop.Controllers
         public string Get()
         {
             Thread.Sleep(700);
-            return ServerResponses.PayOperationSuccess;
+            return "";
         }
     }
 }

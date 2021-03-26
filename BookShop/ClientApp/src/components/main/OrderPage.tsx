@@ -4,9 +4,10 @@ import {Redirect} from "react-router-dom";
 import {getAllPrice} from "./modals/Basket";
 import {Order, renderItems} from "../units/OrderElement";
 import {mounthes} from "../units/consts/consts";
-import {getCities} from "../../DAL/api";
+import {getCities, orderOperation} from "../../DAL/api";
 import {PayModal} from "./modals/PayModal";
-import {Loader} from "../units/Loader";
+import {clearBasket} from "../../redux/action-creators/books/books";
+import {useDispatch} from "react-redux";
 
 export const OrderPage = () => {
     const isAuth = useTypeSelector(state => state.authUser.name);
@@ -18,25 +19,42 @@ export const OrderPage = () => {
     const [emptyCityWarning, setEmptyCityWarning] = useState<boolean>(false);
     const [payModal, setPayModal] = useState<boolean>(false);
 
+    const [serverAnswer, setServerAnswer] = useState<string>('');
+
+    const dispatch = useDispatch();
+
+
+
 
     useEffect(() => {
-        fetchCities();
-    }, [])
+        isAuth && fetchCities();
 
-    const fetchCities = async () => {
+    }, []);
+
+    if (!isAuth) {
+        return <Redirect to={'/registration'}/>;
+    }
+
+    async function fetchCities()  {
         const cities = await getCities();
         setFetchCityFlag(true);
         setCitiesArray(cities);
     }
 
-    const fetchOrder = () => {
+    const fetchOrder = async () => {
         //доделать операцию покупок
-
+        const token = localStorage.getItem('token');
+        console.log(list)
+        if (token) {
+            const orderOperationResponce = await orderOperation(list, city, token);
+            setServerAnswer(orderOperationResponce);
+            if (!orderOperationResponce.includes('уже')) {
+                dispatch(clearBasket());
+                localStorage.removeItem('booksInBasket');
+            }
+        }
     }
 
-    // if (!isAuth) {
-    //     return <Redirect to={'/registration'}/>
-    // }
 
     const changeCity = (e: any) => {
         setEmptyCityWarning(false);
@@ -65,19 +83,32 @@ export const OrderPage = () => {
             <p className={'order-info'}>Оринтировочное время
                 доставки: <u> {new Date(date.setHours(96)).getDate()}-{new Date(date.setHours(140)).getDate()} {mounthes[new Date(date.setHours(140)).getUTCMonth()]}</u>
             </p>
-            <p className={'order-info'}>Выбирите город доставки:</p>
-            <input list="data" type="text" value={city} className={'data-list'} onChange={changeCity}/>
-            {fetchCityFlag ?
-                <datalist id={"data"}>
-                    {renderItems(citiesArray)}
-                </datalist> :
-                <p>Подгружаем города...</p>
+
+            {!serverAnswer ?
+                <>
+                    <p className={'order-info'}>Выбирите город доставки:</p>
+                    <input list="data" type="text" value={city} className={'data-list'} onChange={changeCity}/>
+                    {fetchCityFlag ?
+                        <datalist id={"data"}>
+                            {renderItems(citiesArray)}
+                        </datalist> :
+                        <p>Подгружаем города...</p>
+                    }
+                    <button onClick={goToPay} className={'submit-button'}>Перейти к оплате</button>
+                </>
+                : <p>Доставка в {city}</p>
             }
+
             {emptyCityWarning ?
                 <p className={'message-warning-mini'}>Перед оплатой, необходимо выбрать город доставки</p> : null}
-            <button onClick={goToPay} className={'submit-button'}>Перейти к оплате</button>
-            {payModal ? <PayModal city={city} changeModal={changeModal}/> : null}
+            {serverAnswer ?
+                <>
+                    <p className={serverAnswer.includes('уже') ? "message-warning" : "message-success"}>{serverAnswer}</p>
+                    <p className={'clear-basket'}>Все подробности находятся в личном кабинете</p>
+                </>
+                 : null}
 
+            {payModal ? <PayModal fetchOrder={fetchOrder} city={city} changeModal={changeModal}/> : null}
         </>
     );
 }

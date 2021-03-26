@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShop.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20210321050221_storeDB")]
-    partial class storeDB
+    [Migration("20210326155516_storeDb")]
+    partial class storeDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -175,15 +175,16 @@ namespace BookShop.Migrations
                     b.Property<bool>("IsReceived")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PurchaseId")
-                        .HasColumnType("int");
+                    b.Property<string>("PurchasesHash")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReceivedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("PurchaseId");
+                    b.HasKey("Id");
 
                     b.ToTable("Deliveries");
                 });
@@ -198,14 +199,17 @@ namespace BookShop.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Location")
+                    b.Property<string>("Hash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RegistrationDataId")
                         .HasColumnType("int");
@@ -214,10 +218,6 @@ namespace BookShop.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("RegistrationDataId");
 
                     b.ToTable("Purchases");
                 });
@@ -253,36 +253,6 @@ namespace BookShop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BookShop.Models.Delivery", b =>
-                {
-                    b.HasOne("BookShop.Models.Purchase", "Purchase")
-                        .WithMany()
-                        .HasForeignKey("PurchaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Purchase");
-                });
-
-            modelBuilder.Entity("BookShop.Models.Purchase", b =>
-                {
-                    b.HasOne("BookShop.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookShop.Models.RegistrationParams.RegistrationData", "User")
-                        .WithMany()
-                        .HasForeignKey("RegistrationDataId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

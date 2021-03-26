@@ -5,10 +5,11 @@ import {payFetchOperation} from "../../../DAL/api";
 
 type payModalType = {
     changeModal: () => void;
+    fetchOrder: () => void;
     city: string;
 }
 
-export const PayModal: React.FC<payModalType> = ({changeModal, city}) => {
+export const PayModal: React.FC<payModalType> = ({changeModal, city, fetchOrder}) => {
     const [cardNum, setCardNum] = useState<string>('');
     const [cardDate, setCardDate] = useState<string>('');
 
@@ -24,6 +25,7 @@ export const PayModal: React.FC<payModalType> = ({changeModal, city}) => {
         setServerReq(false);
         setTimeout(() => {
             changeModal();
+            fetchOrder();
         }, 700);
     }
 
