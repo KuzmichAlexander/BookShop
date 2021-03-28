@@ -24,7 +24,7 @@ namespace BookShop.Controllers
                 return ServerResponses.BadRequest;
             }
 
-            var orderObjPurcase = new HashPurcase(DateTime.Now.ToLongDateString(), purchases.City, token);
+            var orderObjPurcase = new HashPurcase(DateTime.Now.ToString(), purchases.City, token);
 
             string hash =
                 SecurityMethods.GetSHA1Hash(

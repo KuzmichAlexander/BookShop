@@ -52,7 +52,7 @@ export const Book: React.FC<fetchedBookType> = ({id, hasInStorage, pages, name, 
     )
 }
 
-const arrayParamsParse = (items: string[] = ['пока пусто, позже будет']) :string => {
+export const arrayParamsParse = (items: string[] = ['пока пусто, позже будет']) :string => {
     let str: string = ' ';
     items.forEach(item => {
         str += item + ' / '

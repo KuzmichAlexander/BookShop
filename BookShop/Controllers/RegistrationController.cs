@@ -42,10 +42,8 @@ namespace BookShop.Controllers
 
             return ServerResponses.UserWasCreated;
         }
-
-
         
-
+        [NonAction]
         static string GetRandomNumber()
         {
             string number = "";
@@ -55,7 +53,8 @@ namespace BookShop.Controllers
             }
             return number;
         }
-
+        
+        [NonAction]
         static void SendEmail(string Email)
         {
             MailAddress from = new MailAddress("bookstore@internet.ru", "Магазин WILDBOOKI");

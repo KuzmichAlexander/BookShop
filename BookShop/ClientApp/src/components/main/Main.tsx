@@ -1,6 +1,6 @@
 import {Route} from 'react-router';
 import {Home} from "./landing/Home";
-import {MyAccount} from "./MyAccount";
+import {MyAccount} from "./userAccount/MyAccount";
 import {Catalog} from "./catalog/Catalog";
 import {Register} from "./regAuth/Register";
 import {EditBooks} from "./adminPages/EditBooks";

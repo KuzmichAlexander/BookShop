@@ -3,6 +3,7 @@ import {baseUrl, token} from "../components/units/consts/consts";
 import {addBookInStorageType, book, bookInput, bookInputParams} from "../redux/types/book/book";
 import {useTypeSelector} from "../hooks/useTypeSelector";
 import {order} from "../redux/types/book/Basket";
+import {log} from "util";
 
 
 export const getGenres = async () => {
@@ -74,5 +75,16 @@ export const payFetchOperation = async () => {
 
 export const orderOperation = async (books: order[], city:string, token: string) => {
     const {data} = await axios.post(`${baseUrl}/api/OrderBook`, {purchases:books, city}, {headers: {Authorization: token}});
+    return data;
+}
+
+export const fetchOrders = async (token: string) => {
+    const {data} = await axios.get(`${baseUrl}/api/UserAccount`, {headers: {Authorization: token}});
+    return data;
+}
+
+export const fetchUserInfo = async (token: string) => {
+    const {data} = await axios.get(`${baseUrl}/api/Auth`, {headers: {Authorization: token}});
+    console.log(data);
     return data;
 }
