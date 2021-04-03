@@ -4,7 +4,7 @@ import {MyAccount} from "./userAccount/MyAccount";
 import {Catalog} from "./catalog/Catalog";
 import {Register} from "./regAuth/Register";
 import {EditBooks} from "./adminPages/EditBooks";
-import {Metrics} from "./adminPages/Metrics";
+import {Metrics} from "./adminPages/Metrics/Metrics";
 import {OrderPage} from "./OrderPage";
 
 export const Main: React.FC = () => {

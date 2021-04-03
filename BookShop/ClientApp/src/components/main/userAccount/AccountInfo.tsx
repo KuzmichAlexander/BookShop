@@ -29,6 +29,10 @@ export const AccountInfo = () => {
                         <span>Эл. Почта</span>
                         <p>{user.email}</p>
                     </div>
+                    <div className="user-description">
+                        <span>Статус</span>
+                        <p>{user.isAdmin ? 'Администратор' : 'Пользователь'}</p>
+                    </div>
                 </div>
                 : null
             }

@@ -88,3 +88,9 @@ export const fetchUserInfo = async (token: string) => {
     console.log(data);
     return data;
 }
+
+export const fetchMoneyMetrics = async () => {
+    const {data} = await axios.get(`${baseUrl}/api/TotalPrice`);
+    console.log(data);
+    return data;
+}

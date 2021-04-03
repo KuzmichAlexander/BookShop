@@ -14,8 +14,9 @@ export const userAuth = (login: string, password: string, save: boolean = true) 
 
             if (data.ok) {
                 if (save) {
-                    localStorage.setItem(token, data.token);
+                    localStorage.setItem('saveMe', 'yep');
                 }
+                localStorage.setItem(token, data.token);
                 dispatch({type: userAuthActions.USER_AUTH_SUCCESS, payload: data});
             } else {
                 dispatch({type: userAuthActions.USER_AUTH_ERROR, payload: "Неверный логин или пароль"});
@@ -48,6 +49,7 @@ export const userLoguot = () => {
     return function (dispatch: Dispatch<userAuthAction>) {
         localStorage.removeItem(token);
         localStorage.removeItem('booksInBasket');
+        localStorage.removeItem('saveMe');
 
         dispatch({type: userAuthActions.USER_LOGOUT});
     }

@@ -9,11 +9,10 @@ import {useDispatch} from "react-redux";
 import {getsBookFromBasket} from "./redux/action-creators/books/books";
 
 function App() {
-    const state = useTypeSelector(state => state);
     const { tokenUserAuth } = useActions();
     const dispatch = useDispatch();
     useEffect(() => {
-        if (localStorage.getItem(token)) {
+        if (localStorage.getItem(token) && localStorage.getItem('saveMe')) {
             // @ts-ignore
             const accessToken: string = localStorage.getItem(token);
             tokenUserAuth(accessToken);

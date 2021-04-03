@@ -1,6 +1,5 @@
 import React from 'react';
-import {arrayParamsParse} from "../catalog/Book";
-import {mounthes} from "../../units/consts/consts";
+import {arrayParamsParse, mounthes} from "../../units/consts/consts";
 
 type OrderType = {
     name: string;
@@ -54,9 +53,9 @@ export const Order: React.FC<OrderType> = ({
                     <p>{parseDate(resievedDate)}</p>
                 </div>
                 <div className="order-description">
-                    <span>Товар получен:</span>
+                    <span>Статус товара:</span>
                     {isResieved
-                        ? <p className={'message-success-mini'}>Да</p>
+                        ? <p className={'message-success-mini'}>Получен</p>
                         : <p className={'message-warning-mini'}>Ожидается</p>}
                 </div>
             </div>

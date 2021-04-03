@@ -6,6 +6,7 @@ import {OrderList} from "./OrderList";
 import {AccountInfo} from "./AccountInfo";
 
 export const MyAccount: React.FC = () => {
+    document.title = 'Лк WildBooki'
     const name = useTypeSelector(state => state.authUser.name);
     const [orders, setOrders] = useState([]);
 

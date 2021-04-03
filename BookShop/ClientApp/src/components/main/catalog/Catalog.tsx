@@ -4,7 +4,7 @@ import {BooksContainer} from "./BooksContainer";
 import {useActions} from "../../../hooks/useActions";
 
 
-export const Catalog: React.FC = () => {
+export const Catalog = () => {
     document.title = "Каталог";
     const {fetchBooks} = useActions();
 

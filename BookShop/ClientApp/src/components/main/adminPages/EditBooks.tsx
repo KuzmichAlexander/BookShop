@@ -40,12 +40,12 @@ export const EditBooks = () => {
             </div>
             <AddBookParams visible={visible.addbookparams} />
             <div className={'edit-description'}>
-                <div className={visible.addbookparams ? 'triangle-opened' : 'triangle-closed'}></div>
+                <div className={visible.addbook ? 'triangle-opened' : 'triangle-closed'}></div>
                 <h2 style={{display: 'block', cursor: 'pointer', width: '100%'}} id={'addbook'} onClick={toggleWindows}>Добавление книги</h2>
             </div>
             <AddBookComponent visible={visible.addbook} />
             <div className={'edit-description'}>
-                <div className={visible.addbookparams ? 'triangle-opened' : 'triangle-closed'}></div>
+                <div className={visible.addbook ? 'triangle-opened' : 'triangle-closed'}></div>
                 <h2 style={{display: 'block', cursor: 'pointer', width: '100%'}} id={'addbookintostorage'} onClick={toggleWindows}>Добавление книг на склад</h2>
             </div>
             <AddBooksInStorage visible={visible.addbookintostorage} />

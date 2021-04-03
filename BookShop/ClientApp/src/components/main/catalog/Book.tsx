@@ -1,10 +1,8 @@
 import React from "react";
-import {useActions} from "../../../hooks/useActions";
 import {useDispatch} from "react-redux";
-import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {addBookToBasket} from "../../../redux/action-creators/books/books";
 import {fetchedBookType} from "../../../redux/types/book/book";
-import {log} from "util";
+import {arrayParamsParse} from "../../units/consts/consts";
 
 
 export const Book: React.FC<fetchedBookType> = ({id, hasInStorage, pages, name, author, description, edition, genre, imageURL, price}) => {
@@ -52,11 +50,4 @@ export const Book: React.FC<fetchedBookType> = ({id, hasInStorage, pages, name, 
     )
 }
 
-export const arrayParamsParse = (items: string[] = ['пока пусто, позже будет']) :string => {
-    let str: string = ' ';
-    items.forEach(item => {
-        str += item + ' / '
-    });
-    str = str.slice(0, str.length - 2);
-    return str;
-}
+

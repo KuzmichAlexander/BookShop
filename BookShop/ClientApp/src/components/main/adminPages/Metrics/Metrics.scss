@@ -1,0 +1,49 @@
+.earn-money-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 20px 0;
+  border-bottom: 1px solid grey;
+  padding-bottom: 10px;
+  align-items: stretch;
+
+  .earn-money-elem {
+    width: 30%;
+    min-height: 100px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #ccc;
+    padding: 20px 0;
+    border-radius: 15px;
+
+    .the-most-element {
+      font-weight: 300 !important;
+    }
+  }
+
+  p {
+    font-size: 36px;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  span {
+    font-size: 30px;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+  }
+}
+
+.border-red {
+  border-bottom: 12px solid rgba(255, 0, 0, 0.5);
+}
+
+.border-green {
+  border-bottom: 12px solid rgba(0, 255, 0, 0.5);
+}
+
+.border-blue {
+  border-bottom: 12px solid rgba(0, 0, 255, 0.5);
+}
+
+.border-purple {
+  border-bottom: 12px solid rgba(164, 73, 196, 0.5);
+}
