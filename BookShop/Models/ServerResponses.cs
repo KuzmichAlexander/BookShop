@@ -37,5 +37,6 @@ namespace BookShop.Models
 
         public static string ChangePasswordSuccess = "Пароль успешно изменен";
         public static string ChangePasswordError = "Неверно введен старый пароль";
+        public static string ChangePasswordIsSame = "Введенные пароли совпадают";
     }
 }

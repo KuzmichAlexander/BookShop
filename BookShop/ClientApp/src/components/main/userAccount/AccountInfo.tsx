@@ -41,17 +41,17 @@ export const AccountInfo = () => {
                         <span>Статус</span>
                         <p>{user.isAdmin ? 'Администратор' : 'Пользователь'}</p>
                     </div>
-                    <button className={'submit-button'} onClick={() => setChangeFlag(!changeFlag)}>Изменить пароль
-                    </button>
+                    <button className={'submit-button'} onClick={() => setChangeFlag(!changeFlag)}>Изменить пароль</button>
                     {changeFlag
                         ? <div style={{width: 400, marginTop: 15, border: '2px solid #999', padding: 15}}>
                             <CustomLabel name={'Старый пароль'} type={'password'} value={oldPass}
                                          onChange={(e) => setOldPass(e.target.value)}/>
                             <CustomLabel name={'Новый пароль'} type={'password'} value={newPass}
                                          onChange={(e) => setNewPass(e.target.value)}/>
-                            <button className={'submit-button'} onClick={changePassHandler}>Изменить</button>
                             {serverAnswer ?
                                 <p className={serverAnswer.includes('Неверно') ? "message-warning" : "message-success"}>{serverAnswer}</p> : null}
+                            <button className={'submit-button'} onClick={changePassHandler}>Изменить</button>
+
                         </div>
                         : null}
                 </div>
