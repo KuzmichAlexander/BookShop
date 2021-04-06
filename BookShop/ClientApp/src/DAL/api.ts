@@ -47,6 +47,7 @@ export const addGenre = async (genre: string) => {
 }
 
 export const addNewBook = async (book: bookInput) => {
+    console.log(book)
     const token = localStorage.getItem('token');
     const {data} = await axios.post(`${baseUrl}/api/AddBook`, book, {headers: {Authorization: token}});
     return data;

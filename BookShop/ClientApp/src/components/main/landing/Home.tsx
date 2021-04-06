@@ -19,7 +19,7 @@ export const Home: React.FC = () => {
                     </div>
                     <div className={'landing-bottom'}>
                         <span className={'bite-to-buy'}>выбери книгу на свой вкус и цвет на WILDBOOKI</span>
-                        <Link className={'link-button'} to={'/books'}>Каталог</Link>
+                        <Link className={'link-button'} to={'/catalog'}>Каталог</Link>
                     </div>
                 </div>
             </div>

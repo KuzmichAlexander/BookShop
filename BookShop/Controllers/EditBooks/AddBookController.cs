@@ -20,7 +20,6 @@ namespace BookShop.Controllers.EditBooks
         [HttpPost]
         public string Post(Book ip)
         {
-            
             string token = Request.Headers["Authorization"];
             var trueAdmin = db.Users.FirstOrDefault(user => user.Token == token);
 

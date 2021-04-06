@@ -54,6 +54,7 @@ export type bookInput = {
     imageURL: string;
     edition: string;
     id: number;
+    imageFile: File | undefined;
 }
 
 export type bookInputParams = {
