@@ -1,9 +1,7 @@
 import axios from "axios";
 import {baseUrl, token} from "../components/units/consts/consts";
-import {addBookInStorageType, book, bookInput, bookInputParams} from "../redux/types/book/book";
-import {useTypeSelector} from "../hooks/useTypeSelector";
+import {addBookInStorageType, bookInput, bookInputParams} from "../redux/types/book/book";
 import {order} from "../redux/types/book/Basket";
-import {log} from "util";
 
 
 export const getGenres = async () => {
@@ -92,6 +90,16 @@ export const fetchUserInfo = async (token: string) => {
 
 export const fetchMoneyMetrics = async () => {
     const {data} = await axios.get(`${baseUrl}/api/TotalPrice`);
+    return data;
+}
+
+export const changePassword = async (req: changePassType, token: string) => {
+    const {data} = await axios.patch(`${baseUrl}/api/ChangePassword`, req,{headers: {Authorization: token}});
     console.log(data);
     return data;
+}
+
+type changePassType = {
+    oldPass: string;
+    newPass: string;
 }

@@ -21,15 +21,14 @@ export const EditBooks = () => {
     });
     document.title = "Редактирование ассортимента";
 
-    //const isAdmin = useTypeSelector(state => state.authUser.isAdmin);
-    //if(!isAdmin) return <Redirect to={'/catalog'} />
+    const isAdmin = useTypeSelector(state => state.authUser.isAdmin);
+    if(!isAdmin) return <Redirect to={'/catalog'} />
 
     const toggleWindows = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
         // @ts-ignore
         const id: string = e.target.id;
         // @ts-ignore
         setVisible({...visible, [id]: !visible[id]})
-        console.log(visible)
     }
 
     return (

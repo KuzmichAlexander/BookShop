@@ -17,7 +17,6 @@ export const fetchBooks = (options: fetchBooksOptions) => {
 
             const response  = await axios.post(`${baseUrl}/api/Books`, options);
             const data: fetchedBookType[] = response.data;
-            console.log(data)
             dispatch({type: fetchBooksActions.FETCH_BOOKS_SUCCESS, payload: data});
 
         } catch (e) {

@@ -89,7 +89,6 @@ export const Metrics = () => {
     const getMetrics = async () => {
         const data = await fetchMoneyMetrics();
         setMoneyMetrics(data);
-        console.log(data)
     }
 
     const toggleWindows = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
@@ -97,7 +96,6 @@ export const Metrics = () => {
         const id: string = e.target.id;
         // @ts-ignore
         setVisible({...visible, [id]: !visible[id]});
-        console.log(visible);
     }
 
     return (

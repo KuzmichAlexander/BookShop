@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 
 export const FullCitiesInfo:React.FC<FIType> = ({visible, data}) => {
     const classes = useStyles();
-    console.log(data);
     return (
         <div className={visible ? 'm-top-bottom-20' : 'm-top-bottom-20 hide-container'}>
             <TableContainer component={Paper}>

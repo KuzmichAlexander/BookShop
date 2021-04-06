@@ -34,5 +34,8 @@ namespace BookShop.Models
         {
             return $"На склад поступило {count} книг '{name}'";
         }
+
+        public static string ChangePasswordSuccess = "Пароль успешно изменен";
+        public static string ChangePasswordError = "Неверно введен старый пароль";
     }
 }

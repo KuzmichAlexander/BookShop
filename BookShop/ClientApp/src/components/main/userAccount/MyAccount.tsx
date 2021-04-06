@@ -6,8 +6,9 @@ import {OrderList} from "./OrderList";
 import {AccountInfo} from "./AccountInfo";
 
 export const MyAccount: React.FC = () => {
-    document.title = 'Лк WildBooki'
     const name = useTypeSelector(state => state.authUser.name);
+    document.title = `Лк ${name} WildBooki`;
+
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
@@ -35,16 +36,15 @@ export const MyAccount: React.FC = () => {
             return acc + order.count;
         } ,0)
     }
-    // if (!name) {
-    //     return <Redirect to={'/registration'}/>;
-    // }
+    if (!name) {
+        return <Redirect to={'/registration'}/>;
+    }
 
     return (
         <>
             <h2>Здраствуйте, {name}!</h2>
             <br/>
             <AccountInfo />
-
             <h3 style={{textDecoration:'underline'}}>Статистика:</h3>
             <br/>
             <p className={'acc-stats'}>Сумма выкупа: {getAllSum()} ₽</p>

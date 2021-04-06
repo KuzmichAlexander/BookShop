@@ -27,7 +27,41 @@ namespace BookShop.Controllers
 
             if (ro.Name != "")
             {
-                cblist = cblist.Where(book => book.Name.Contains(ro.Name)).ToList();
+                cblist = cblist.Where(book =>
+                {
+                    var authorsId = db.BooksAuthors
+                        .Where(author => author.Bookid == book.Id)
+                        .Select(id => id.Authorid)
+                        .ToList();
+                    List<string> authors = new List<string>();
+                    foreach (var id in authorsId)
+                    {
+                        string au = db.Authors.First(author => author.Id == id).Name;
+                        authors.Add(au);
+                    }
+
+                    bool AuthorContainFlag = false;
+
+                    authors.ForEach(author =>
+                    {
+                        if (author.ToLower().Contains(ro.Name.ToLower()))
+                        {
+                            AuthorContainFlag = true;
+                        }
+                    });
+                    if (book.Name.ToLower().Contains(ro.Name.ToLower()) || AuthorContainFlag)
+                    {
+                        return true;
+                    }
+                    
+                    return false;
+                }).ToList();
+
+                
+                
+                
+                
+                //cblist.Add();
             }
 
             if (ro.Genre != "" && ro.Genre != "nth")

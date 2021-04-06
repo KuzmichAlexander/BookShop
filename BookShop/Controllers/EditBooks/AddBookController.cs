@@ -23,7 +23,7 @@ namespace BookShop.Controllers.EditBooks
             string token = Request.Headers["Authorization"];
             var trueAdmin = db.Users.FirstOrDefault(user => user.Token == token);
 
-            if (trueAdmin == null)
+            if (trueAdmin == null && trueAdmin.IsAdmin == true)
             {
                 return ServerResponses.BadRequest;
             }
