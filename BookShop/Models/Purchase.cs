@@ -1,5 +1,4 @@
-﻿using BookShop.Models.RegistrationParams;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace BookShop.Models

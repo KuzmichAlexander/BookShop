@@ -1,1 +1,0 @@
-{"Id":4,"Name":"\u043A\u0435\u043A\u0432","Surname":"123","Email":"\u0439\u0446\u0443\u0439\u0446\u0443","Login":"qqq","Password":"a056c8d05ae9ac6ca180bc991b93b7ffe37563e0","Token":"ecc9b27fbd05899d5299eb3d0a96f765a6cf4ead","IsAdmin":true}

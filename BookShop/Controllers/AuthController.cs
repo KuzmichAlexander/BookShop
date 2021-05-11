@@ -2,7 +2,6 @@
 using BookShop.Models.DBContext;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading;
 
 namespace BookShop.Controllers
 {
@@ -19,8 +18,7 @@ namespace BookShop.Controllers
             user.Ok = true;
             return user;
         }
-
-
+        
         [HttpPost]
         public UserAuthData Post(UserAuth ua) // Авторизация по логину и паролю
         {
@@ -40,8 +38,7 @@ namespace BookShop.Controllers
             user.Email = trueUser.Email;
             user.Token = trueUser.Token;
             user.IsAdmin = trueUser.IsAdmin;
-
-
+            
             user.Ok = true;
 
             return user;

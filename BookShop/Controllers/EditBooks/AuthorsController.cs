@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using BookShop.Models;
+﻿using BookShop.Models;
 using BookShop.Models.BooksParams;
 using BookShop.Models.DBContext;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookShop.Controllers.EditBooks
 {
@@ -15,7 +12,6 @@ namespace BookShop.Controllers.EditBooks
     public class AuthorsController : Controller
     {
         DBContext db = new DBContext();
-        // GET: EditBookController
         [HttpGet]
         public List<string> Get()
         {
@@ -32,8 +28,10 @@ namespace BookShop.Controllers.EditBooks
 
             Author author = new Author();
             author.Name = ip.Name;
+            
             db.Authors.Add(author);
             db.SaveChanges();
+            
             return ServerResponses.ElementWasAdded;
         }
     }

@@ -1,12 +1,7 @@
 ﻿using BookShop.Models;
-using BookShop.Models.BooksParams;
 using BookShop.Models.DBContext;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BookShop.Models.RegistrationParams;
 
 namespace BookShop.Controllers.EditBooks
@@ -16,7 +11,6 @@ namespace BookShop.Controllers.EditBooks
     public class ChangePassword : Controller
     {
         DBContext db = new DBContext();
-        // GET: ChangePassword
         [HttpPatch]
         public string Patch(PassModel pm)
         {
@@ -42,7 +36,6 @@ namespace BookShop.Controllers.EditBooks
             
             return ServerResponses.ChangePasswordError;
         }
-        
         
         public class PassModel
         {

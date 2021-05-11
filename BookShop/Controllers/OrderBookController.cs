@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using System.Threading;
 using BookShop.Models;
 using BookShop.Models.DBContext;
 using BookShop.Models.RegistrationParams;

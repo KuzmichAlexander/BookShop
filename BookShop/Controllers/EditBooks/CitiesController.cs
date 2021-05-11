@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using BookShop.Models;
-using BookShop.Models.BooksParams;
+﻿using BookShop.Models;
 using BookShop.Models.DBContext;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BookShop.Models.Cities;
 
 namespace BookShop.Controllers.EditBooks
@@ -35,6 +31,7 @@ namespace BookShop.Controllers.EditBooks
             city.Name = ip.Name;
             db.Cities.Add(city);
             db.SaveChanges();
+            
             return ServerResponses.ElementWasAdded;
         }
     }

@@ -2,7 +2,6 @@
 using BookShop.Models.BooksParams;
 using BookShop.Models.DBContext;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -56,12 +55,7 @@ namespace BookShop.Controllers
                     
                     return false;
                 }).ToList();
-
                 
-                
-                
-                
-                //cblist.Add();
             }
 
             if (ro.Genre != "" && ro.Genre != "nth")

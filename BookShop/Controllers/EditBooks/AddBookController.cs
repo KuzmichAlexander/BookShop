@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using BookShop.Models;
+﻿using BookShop.Models;
 using BookShop.Models.BooksParams;
 using BookShop.Models.DBContext;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookShop.Controllers.EditBooks
 {
@@ -16,7 +12,6 @@ namespace BookShop.Controllers.EditBooks
     public class AddBookController : Controller
     {
         DBContext db = new DBContext();
-        // GET: EditBookController
         [HttpPost]
         public string Post(Book ip)
         {
@@ -46,12 +41,8 @@ namespace BookShop.Controllers.EditBooks
             db.Books.Add(NewBook);
             db.SaveChanges();
             
-            
-            
-            
-
             Storage st = new Storage();
-
+            
             db.StoragePositions.Add(st);
             db.SaveChanges();
 

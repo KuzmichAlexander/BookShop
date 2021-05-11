@@ -1,11 +1,4 @@
-﻿using BookShop.Models.BooksParams;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System.Collections.Generic;
 
 namespace BookShop.Models
 {
@@ -49,8 +42,5 @@ namespace BookShop.Models
         public bool HasInStorage { get; set; }
         public List<string> Author { get; set; }
         public List<string> Genre { get; set; }
-        [NotMapped]
-        public IFormFile ImageFile { get; set; }
-        
     }
 }

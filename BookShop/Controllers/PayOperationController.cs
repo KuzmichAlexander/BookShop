@@ -1,5 +1,4 @@
 ﻿using System.Threading;
-using BookShop.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.Controllers
@@ -8,6 +7,7 @@ namespace BookShop.Controllers
     [ApiController]
     public class PayOperationController : Controller
     {
+        //Метод имитирующий задержку транзакции
         [HttpGet]
         public string Get()
         {

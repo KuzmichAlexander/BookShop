@@ -3,13 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net.Mail;
 using System.Net;
-using System.IO;
-using System.Text.Json;
-using System.Security.Cryptography;
 using BookShop.Models;
 using System.Linq;
 using BookShop.Models.DBContext;
-using System.Threading;
 
 namespace BookShop.Controllers
 {
@@ -30,14 +26,13 @@ namespace BookShop.Controllers
             }
 
             RegistrationData rd = SecurityMethods.DBWrapper(ri);
-            //----- Тут будет создание токена
+            //-----Cоздание токена
             rd.Token = SecurityMethods.CreateToken(rd);
             //-----
 
-            //----- Тут будет занесение данных в бд
+            //-----Pанесение данных в бд
             db.Users.Add(rd);
             db.SaveChanges();
-            SecurityMethods.LogRegister(rd);
             //-----
 
             return ServerResponses.UserWasCreated;
@@ -53,7 +48,7 @@ namespace BookShop.Controllers
             }
             return number;
         }
-        
+        //В попытках прикрутить подтверждение регистрации по почте
         [NonAction]
         static void SendEmail(string Email)
         {
@@ -69,8 +64,5 @@ namespace BookShop.Controllers
             smtp.Credentials = new NetworkCredential("bookstore@internet.ru", "ghj100ghj100ghj");
             smtp.Send(m);
         }
-
-        
-
     }
 }

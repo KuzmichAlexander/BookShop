@@ -3,7 +3,6 @@ using System.Linq;
 using BookShop.Models;
 using BookShop.Models.DBContext;
 using Microsoft.AspNetCore.Mvc;
-using static BookShop.Models.ServerResponses;
 
 namespace BookShop.Controllers
 {
@@ -12,7 +11,6 @@ namespace BookShop.Controllers
     public class UserAccount : Controller
     {
         DBContext db = new DBContext();
-        // GET
         [HttpGet]
         public List<UserOrders> Get()
         {
@@ -58,10 +56,6 @@ namespace BookShop.Controllers
                     });
             });
 
-            if (5 == 5)
-            {
-                
-            }
             return ua;
         }
     }

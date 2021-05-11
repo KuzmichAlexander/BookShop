@@ -51,7 +51,6 @@ export const AccountInfo = () => {
                             {serverAnswer ?
                                 <p className={serverAnswer.includes('Неверно') ? "message-warning" : "message-success"}>{serverAnswer}</p> : null}
                             <button className={'submit-button'} onClick={changePassHandler}>Изменить</button>
-
                         </div>
                         : null}
                 </div>
