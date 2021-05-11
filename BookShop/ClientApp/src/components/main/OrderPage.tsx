@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {Redirect} from "react-router-dom";
 import {getAllPrice} from "./modals/Basket";
-import {Order, renderItems} from "../units/OrderElement";
-import {mounthes} from "../units/consts/consts";
+import {Order, renderItems} from "../../utils/OrderElement";
+import {mounthes} from "../../utils/consts/consts";
 import {getCities, orderOperation} from "../../DAL/api";
 import {PayModal} from "./modals/PayModal";
 import {clearBasket} from "../../redux/action-creators/books/books";
@@ -44,7 +44,6 @@ export const OrderPage = () => {
     const fetchOrder = async () => {
         //доделать операцию покупок
         const token = localStorage.getItem('token');
-        console.log(list)
         if (token) {
             const orderOperationResponce = await orderOperation(list, city, token);
             setServerAnswer(orderOperationResponce);

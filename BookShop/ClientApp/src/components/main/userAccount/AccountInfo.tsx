@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {changePassword} from "../../../DAL/api";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
-import {CustomLabel} from "../../units/CustomLabel";
+import {CustomLabel} from "../../../utils/CustomLabel";
 
 export const AccountInfo = () => {
     const user = useTypeSelector(state => state.authUser);

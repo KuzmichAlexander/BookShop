@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {renderItems} from "../../units/OrderElement";
+import {renderItems} from "../../../utils/OrderElement";
 import {AddBookIntoStorage, getBooksName} from "../../../DAL/api";
-import {MultiOptions} from "../../units/consts/MultiOptions";
-import {CustomLabel} from "../../units/CustomLabel";
+import {MultiOptions} from "../../../utils/consts/MultiOptions";
+import {CustomLabel} from "../../../utils/CustomLabel";
 
 type bkType = {
     visible: boolean;
@@ -50,7 +50,6 @@ export const AddBooksInStorage:React.FC<bkType> = ({visible}) => {
     const addBooks = async () => {
         const serverAnswer = await AddBookIntoStorage({name: name[0], count: parseInt(count)});
         setServerAnswer(serverAnswer);
-        console.log(serverAnswer);
     }
 
 

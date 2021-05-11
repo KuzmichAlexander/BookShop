@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {makeStyles} from "@material-ui/core";
-import {arrayParamsParse} from "../../../units/consts/consts";
+import {arrayParamsParse} from "../../../../utils/consts/consts";
 
 type FIType = {
     visible: boolean;

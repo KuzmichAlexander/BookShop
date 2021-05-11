@@ -2,7 +2,7 @@ export enum fetchBooksActions {
     FETCH_BOOKS = 'FETCH_BOOKS',
     FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS',
     FETCH_BOOKS_ERROR = 'FETCH_BOOKS_ERROR'
-};
+}
 
 export type book = {
     name: string;

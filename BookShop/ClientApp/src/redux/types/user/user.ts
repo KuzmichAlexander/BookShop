@@ -1,11 +1,9 @@
-import {book, fetchBooksActions} from "../book/book";
-
 export enum userAuthActions {
     USER_AUTH = 'USER_AUTH',
     USER_AUTH_SUCCESS = 'USER_AUTH_SUCCESS',
     USER_AUTH_ERROR = 'USER_AUTH_ERROR',
     USER_LOGOUT = 'USER_LOGOUT'
-};
+}
 
 export interface userState {
     name: string;
@@ -16,7 +14,7 @@ export interface userState {
     error: null | string;
     loading: boolean;
     isAdmin: boolean;
-};
+}
 
 export type fetchedUser = {
     login: string;

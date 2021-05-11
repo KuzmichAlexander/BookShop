@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {useActions} from "../../../hooks/useActions";
-import {CustomLabel} from "../../units/CustomLabel";
-import {Loader} from "../../units/Loader";
+import {CustomLabel} from "../../../utils/CustomLabel";
+import {Loader} from "../../../utils/Loader";
 
 type AuthWindowType = {
     showAuthWindow: () => void;

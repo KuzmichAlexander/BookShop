@@ -1,5 +1,5 @@
 import React from 'react';
-import {arrayParamsParse, mounthes} from "../../units/consts/consts";
+import {arrayParamsParse, mounthes} from "../../../utils/consts/consts";
 
 type OrderType = {
     name: string;

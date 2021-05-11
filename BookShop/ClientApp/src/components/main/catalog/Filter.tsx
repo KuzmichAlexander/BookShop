@@ -1,9 +1,9 @@
 import React, {ChangeEvent, Dispatch, SetStateAction, useEffect, useState} from "react";
-import {CustomLabel} from "../../units/CustomLabel";
-import {createSelect} from "../../units/consts/consts";
+import {CustomLabel} from "../../../utils/CustomLabel";
+import {createSelect} from "../../../utils/consts/consts";
 import {useActions} from "../../../hooks/useActions";
 import {getGenres} from "../../../DAL/api";
-import {renderItems} from "../../units/OrderElement";
+import {renderItems} from "../../../utils/OrderElement";
 
 export const Filter: React.FC = () => {
     const [name, setName] = useState<string>('');

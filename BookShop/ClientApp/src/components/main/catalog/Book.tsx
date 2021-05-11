@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import {addBookToBasket} from "../../../redux/action-creators/books/books";
 import {fetchedBookType} from "../../../redux/types/book/book";
-import {arrayParamsParse} from "../../units/consts/consts";
+import {arrayParamsParse} from "../../../utils/consts/consts";
 
 
 export const Book: React.FC<fetchedBookType> = ({id, hasInStorage, pages, name, author, description, edition, genre, imageURL, price}) => {

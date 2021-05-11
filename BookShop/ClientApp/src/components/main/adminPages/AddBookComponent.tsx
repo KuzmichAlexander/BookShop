@@ -1,8 +1,8 @@
-import {CustomLabel} from "../../units/CustomLabel";
+import {CustomLabel} from "../../../utils/CustomLabel";
 import React, {useEffect, useState} from "react";
 import {addNewBook, addParamsToNewBook, getAuthors, getEditions, getGenres} from "../../../DAL/api";
-import {renderItems} from "../../units/OrderElement";
-import {MultiOptions} from "../../units/consts/MultiOptions";
+import {renderItems} from "../../../utils/OrderElement";
+import {MultiOptions} from "../../../utils/consts/MultiOptions";
 import img from "../../../images/addBookNoImage/defaultImage.jpg";
 import {DragNDrop} from "./DragNDrop";
 

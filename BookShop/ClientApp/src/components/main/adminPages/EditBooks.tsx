@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
-import {CustomLabel} from "../../units/CustomLabel";
+import {CustomLabel} from "../../../utils/CustomLabel";
 import {addAuthors, addCity, addEdition, addGenre} from "../../../DAL/api";
 import {AddBookComponent} from "./AddBookComponent";
 import {AddBooksInStorage} from "./AddBooksInStorage";

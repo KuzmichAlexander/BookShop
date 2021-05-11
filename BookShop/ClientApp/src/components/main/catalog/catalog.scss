@@ -58,7 +58,6 @@ $border: 1px solid #ccc;
 
 .book {
   height: 430px;
-
   flex-basis: 270px;
   padding: 15px;
   margin-bottom: 15px;
@@ -71,8 +70,12 @@ $border: 1px solid #ccc;
   .more-info {
     opacity: 0;
     overflow: hidden;
+    top: -15px;
+    left: -15px;
     z-index: 51;
     transition: $main-transition;
+    visibility: hidden;
+    position: absolute;
   }
 
   .image-container {
@@ -101,7 +104,6 @@ $border: 1px solid #ccc;
         content: ' ₽';
       }
     }
-
   }
 
   &:hover {
@@ -120,6 +122,7 @@ $border: 1px solid #ccc;
       border: $border;
       box-shadow: 2px 2px 20px $box-shadow-color;
       text-align: left;
+      visibility: visible;
 
       .image-container {
         width: 327px;

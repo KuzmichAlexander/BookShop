@@ -3,7 +3,7 @@ import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {useState} from "react";
 import {UserShortInfo} from "../main/modals/UserShortInfo";
 import {AuthWindow} from "../main/modals/AuthWindow";
-import {Loader} from "../units/Loader";
+import {Loader} from "../../utils/Loader";
 import BasketImg from "../../images/shopping-basket.svg"
 import {Basket} from "../main/modals/Basket";
 
@@ -59,7 +59,7 @@ export const Nav: React.FC = () => {
                         {userShortInfo ? <UserShortInfo showWindow={showUserWindow}/> : null}
                     </div>
                     : <div className={'user-actions'}>
-                        {loading ? <Loader scale={1.8} marginTop={9} width={30} color={"white"}/>
+                        {loading ? <Loader scale={1.6} marginTop={4} width={30} color={"white"}/>
                             : <>
                                 <a onClick={showAuthWindow}>Войти</a>
                                 <Link to={'/registration'}>Зарегистрироваться</Link>

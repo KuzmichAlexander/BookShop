@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {addBookToBasket, removeBookFromBasket} from "../../redux/action-creators/books/books";
+import {addBookToBasket, removeBookFromBasket} from "../redux/action-creators/books/books";
 
 type OrderType = {
     count: number;

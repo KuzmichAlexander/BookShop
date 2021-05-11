@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {userAuthAction, userAuthActions} from "../../types/user/user";
-import {baseUrl, token} from "../../../components/units/consts/consts";
+import {baseUrl, token} from "../../../utils/consts/consts";
 import axios from "axios";
 import {clearBasket} from "../books/books";
 import {orderBookActions} from "../../types/book/Basket";

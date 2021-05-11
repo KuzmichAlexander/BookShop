@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {CustomLabel} from "../../units/CustomLabel";
-import {Loader} from "../../units/Loader";
+import {CustomLabel} from "../../../utils/CustomLabel";
+import {Loader} from "../../../utils/Loader";
 import {payFetchOperation} from "../../../DAL/api";
 
 type payModalType = {
@@ -43,7 +43,6 @@ export const PayModal: React.FC<payModalType> = ({changeModal, city, fetchOrder}
     const payDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
         let symbol = value.slice(value.length - 1, value.length)
-        console.log(symbol, 'ss', value)
 
         if (!isNaN(+symbol)) {
             if (value.length === 4) value += ' ';

@@ -2,7 +2,7 @@ import React from "react";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {order} from "../../../redux/types/book/Basket";
 import {Link} from "react-router-dom";
-import {Order} from "../../units/OrderElement";
+import {Order} from "../../../utils/OrderElement";
 import {useDispatch} from "react-redux";
 import {clearBasket} from "../../../redux/action-creators/books/books";
 

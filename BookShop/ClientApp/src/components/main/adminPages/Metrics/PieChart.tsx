@@ -1,5 +1,5 @@
 import React from 'react';
-import {getBGColors} from "../../../units/consts/consts";
+import {getBGColors} from "../../../../utils/consts/consts";
 import {Pie} from "react-chartjs-2";
 import {chartType} from "./Metrics";
 

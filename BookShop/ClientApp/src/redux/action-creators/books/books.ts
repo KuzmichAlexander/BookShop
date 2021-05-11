@@ -1,7 +1,7 @@
 import {book, fetchBookAction, fetchBooksActions, fetchBooksOptions, fetchedBookType} from "../../types/book/book";
 import {Dispatch} from "redux";
 import axios from "axios";
-import {baseUrl} from '../../../components/units/consts/consts';
+import {baseUrl} from '../../../utils/consts/consts';
 import {order, orderBooksActions} from "../../types/book/Basket";
 
 export const fetchBooks = (options: fetchBooksOptions) => {

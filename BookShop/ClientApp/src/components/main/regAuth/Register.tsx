@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useState} from "react";
-import {CustomLabel} from "../../units/CustomLabel";
+import {CustomLabel} from "../../../utils/CustomLabel";
 import {useDispatch, useSelector} from "react-redux";
 import {useActions} from "../../../hooks/useActions";
 import {userRegister} from "../../../redux/action-creators/userActionCreators/userAuthRegister";
-import {Loader} from "../../units/Loader";
+import {Loader} from "../../../utils/Loader";
 import greenLoader from "../../../images/loader/Spinner-green.svg";
 
 

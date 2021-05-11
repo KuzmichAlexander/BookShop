@@ -1,5 +1,5 @@
-import whiteLoader from '../../images/loader/Spinner-white.svg';
-import greenLoader from '../../images/loader/Spinner-green.svg';
+import whiteLoader from '../images/loader/Spinner-white.svg';
+import greenLoader from '../images/loader/Spinner-green.svg';
 
 type options = {
     width: number;

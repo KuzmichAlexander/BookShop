@@ -1,4 +1,3 @@
-import React, {useEffect} from 'react';
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {useActions} from "../../../hooks/useActions";
 import {Link} from "react-router-dom";
@@ -14,13 +13,7 @@ export const UserShortInfo: React.FC<UserShortInfoType> = ({showWindow}) => {
     const {userLoguot} = useActions();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-
-    }, [])
-
     const profileLogout = () => {
-        //написать логику с чисткой локалстораджа
-        console.log('почистил');
         userLoguot();
         dispatch(clearBasket());
     };

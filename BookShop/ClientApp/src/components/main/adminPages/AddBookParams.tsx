@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {addAuthors, addCity, addEdition, addGenre} from "../../../DAL/api";
-import {CustomLabel} from "../../units/CustomLabel";
+import {CustomLabel} from "../../../utils/CustomLabel";
 
 type bkType = {
     visible: boolean;
@@ -23,7 +23,6 @@ export const AddBookParams: React.FC<bkType> = ({visible}) => {
     }
 
     const addNewCity = async () => {
-        console.log(cityName)
         const cityNameResult = await addCity(cityName);
         setCitySuccess(cityNameResult);
     }
