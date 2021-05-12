@@ -1,5 +1,5 @@
 import axios from "axios";
-import {baseUrl, token} from "../utils/consts/consts";
+import {token} from "../utils/consts/consts";
 import {addBookInStorageType, bookInput, bookInputParams} from "../redux/types/book/book";
 import {order} from "../redux/types/book/Basket";
 
@@ -82,7 +82,7 @@ export const fetchOrders = async (token: string) => {
 }
 
 export const fetchMoneyMetrics = async () => {
-    const {data} = await axios.get(`/api/TotalPrice`);
+    const {data} = await axios.get(`/api/Statistic`);
     return data;
 }
 

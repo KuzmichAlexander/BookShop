@@ -250,7 +250,7 @@ namespace BookShop.Controllers.Metrics
             //----- самый читающий город + выборка всех
             TopData topCity = new TopData(null, 0);
             List<AllInfoCityList> AllCities = new List<AllInfoCityList>();
-            topdatacities.ForEach((top) =>
+            topdatacities.ForEach(top =>
             {
                 counter++;
                 AllCities.Add(new AllInfoCityList(top.value, top.count, counter));
@@ -287,5 +287,4 @@ namespace BookShop.Controllers.Metrics
             return tp;
         }
     }
-    
 }

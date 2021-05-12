@@ -1,5 +1,3 @@
-export const baseUrl: string = document.location.origin;
-
 export const token = 'token';
 
 export const createSelect = (names: string[]) => names.map(name => <option key={name} value={name}>{name}</option>);
@@ -24,7 +22,7 @@ export const getBGColors = (count: number) => {
     return colors;
 };
 
-export const arrayParamsParse = (items: string[] = ['пока пусто... данные подгружаются']) :string => {
+export const arrayParamsParse = (items: string[] = ['Пока пусто... данные подгружаются']) :string => {
     let str: string = ' ';
     items.forEach(item => {
         str += item + ' / '

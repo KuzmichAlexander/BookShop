@@ -2,7 +2,7 @@
 
 namespace BookShop.Controllers.Metrics
 {
-    [Route("api/[controller]")]
+    [Route("api/Statistic")]
     [ApiController]
     public class TotalPriceController : Controller
     {
