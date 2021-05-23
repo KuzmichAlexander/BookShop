@@ -1,16 +1,16 @@
 import {Dispatch} from "redux";
 import {userAuthAction, userAuthActions} from "../../types/user/user";
-import {baseUrl, token} from "../../../utils/consts/consts";
 import axios from "axios";
 import {clearBasket} from "../books/books";
 import {orderBookActions} from "../../types/book/Basket";
+import {token} from "../../../utils/consts/consts";
 
 export const userAuth = (login: string, password: string, save: boolean = true) => {
     return async function (dispatch: Dispatch<userAuthAction>) {
         try {
             dispatch({type: userAuthActions.USER_AUTH});
 
-            const {data} = await axios.post(`${baseUrl}/api/Auth`, {login, password});
+            const {data} = await axios.post(`/api/Auth`, {login, password});
 
             if (data.ok) {
                 if (save) {
@@ -32,7 +32,7 @@ export const tokenUserAuth = (token: string) => {
     return async function (dispatch: Dispatch<userAuthAction>) {
         try {
             dispatch({type: userAuthActions.USER_AUTH});
-            const {data} = await axios.get(`${baseUrl}/api/Auth`, {headers: {Authorization: token}});
+            const {data} = await axios.get(`/api/Auth`, {headers: {Authorization: token}});
             if (data.ok) {
                 dispatch({type: userAuthActions.USER_AUTH_SUCCESS, payload: data});
             } else {
@@ -65,7 +65,7 @@ type regData = {
 
 export const userRegister = async (userRegData: regData) => {
     try {
-        const {data} = await axios.post(`${baseUrl}/api/Registration`, userRegData);
+        const {data} = await axios.post(`/api/Registration`, userRegData);
         return data;
     } catch (e) {
         return 'Сервер не отвечает';

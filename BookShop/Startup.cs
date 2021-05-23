@@ -1,3 +1,5 @@
+using System.Threading;
+using BookShop.IntervalEvents;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -11,6 +13,10 @@ namespace BookShop
     {
         public Startup(IConfiguration configuration)
         {
+            new Thread(() =>
+            {
+                new UpdateDeliveryStatus().StartTimeintervalUpdate();
+            }).Start();
             Configuration = configuration;
         }
 
@@ -58,6 +64,7 @@ namespace BookShop
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
+                
             });
         }
     }
